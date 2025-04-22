@@ -11,6 +11,7 @@ import BlogDetails from "../pages/BlogDetails/BlogDetails";
 import ProductAuthor from "../pages/ProductAuthor/ProductAuthor";
 import Faq from "../pages/Faq/Faq";
 import NotFound from "../pages/NotFound/NotFound";
+import TestComponents from "../pages/TestComponents/TestComponents";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
   {
     path: "/faq",
     element: <Faq></Faq>,
+  },
+  {
+    path: "/test/components",
+    element: <TestComponents></TestComponents>,
   },
   {
     path: "/*",
