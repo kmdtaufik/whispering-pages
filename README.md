@@ -22,3 +22,9 @@
 
 - Logo
 - Favicon ICOn
+
+## Custom Component List
+
+- Typography
+- Icon
+- Header
