@@ -8,7 +8,7 @@ const Middle = () => {
   return (
     <div>
       <div className="flex items-center justify-between container mx-auto py-3">
-        <img src="/Logo.png" width=269 className="h-auto" />
+        <img src="/Logo.png" width="269" height="92" className="h-auto" />
 
         <div className="flex items-center bg-tertiary">
           <div className=" flex items-center gap-2  px-4">
