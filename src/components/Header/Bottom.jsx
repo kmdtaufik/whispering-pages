@@ -1,11 +1,37 @@
-import React from 'react';
+import React from "react";
+import Button from "../Button/Button";
+import { Link } from "react-router";
 
 const Bottom = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+  const navText = ["Home", "Store", "Blog", "Contact", "faq"];
+  return (
+    <div className=" flex container mx-auto py-3">
+      <Button
+        variant="secondary"
+        leftIcon="fe:bar"
+        rightIcon="fe:arrow-down"
+        className="flex items-center gap-2 uppercase"
+      >
+        All Departments
+      </Button>
+      <div className="flex items-center">
+        {navText &&
+          navText.map((item, index) => (
+            <Link to={`/${item.toLowerCase()}`} key={index}>
+              {" "}
+              <Button
+                rightIcon={item === "faq" ? "" : "fe:arrow-down"}
+                variant="navItem"
+                className="flex items-center gap-2 uppercase"
+                key={index}
+              >
+                {item}
+              </Button>
+            </Link>
+          ))}
+      </div>
+    </div>
+  );
 };
 
 export default Bottom;

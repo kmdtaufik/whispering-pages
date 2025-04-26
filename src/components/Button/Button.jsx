@@ -1,11 +1,14 @@
 import React from "react";
 import clsx from "clsx";
+import Iconify from "../Iconify/Iconify";
 // import PropTypes from "prop-types";
 
 const variantClasses = {
   primary: "py-4 px-5 bg-primary text-white",
   secondary: "py-4 px-5 bg-secondary text-white",
   outline: "py-4 px-5 bg-transparent text-primary border-primary border-2",
+  navItem: "py-4 px-5 bg-transparent text-secondary font-semibold",
+
   //   danger: "py-4 px-5 ",
 };
 
@@ -23,6 +26,8 @@ const Button = ({
   disabled = false,
   isLoading = false,
   className = "",
+  leftIcon = "",
+  rightIcon = "",
   ...props
 }) => {
   return (
@@ -40,7 +45,9 @@ const Button = ({
       )}
       {...props}
     >
+      {leftIcon && <Iconify icon={leftIcon} />}
       {isLoading ? "Loading..." : children}
+      {rightIcon && <Iconify icon={rightIcon} />}
     </button>
   );
 };

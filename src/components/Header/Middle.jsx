@@ -6,7 +6,7 @@ import Input from "../Input/Input";
 
 const Middle = () => {
   return (
-    <div>
+    <div className="border-b border-t border-b-indigo-50 border-t-indigo-50">
       <div className="flex items-center justify-between container mx-auto py-3">
         <img src="/Logo.png" width="108" height="37" />
 
@@ -37,7 +37,7 @@ const Middle = () => {
             <div className="bg-primary absolute right-0 text-white rounded-full w-6 h-6 text-sm flex items-center justify-center">
               1
             </div>
-            <Iconify className="h-20 w-20" icon={"solar:cart-linear"}></Iconify>
+            <Iconify className="h-12 w-12" icon={"solar:cart-linear"}></Iconify>
           </div>
         </div>
       </div>
