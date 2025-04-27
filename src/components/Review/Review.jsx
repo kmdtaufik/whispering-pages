@@ -79,7 +79,7 @@ export default function Review() {
     },
   ];
   return (
-    <section className="container mx-auto py-10">
+    <section className="container mx-auto py-10 border-t border-t-gray-100">
       <Typography
         variant="h3"
         className=" font-primary font-bold text-secondary pb-10"
@@ -89,6 +89,7 @@ export default function Review() {
       </Typography>{" "}
       <Swiper
         navigation={true}
+        spaceBetween={30}
         modules={[Navigation]}
         className="mySwiper "
         slidesPerView={3}

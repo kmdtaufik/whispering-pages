@@ -5,7 +5,7 @@ import Typography from "../Typography/Typography";
 export default function ClientReview(props) {
   const { name, rating, title, review, imgUrl, profession } = props.reviews;
   return (
-    <div className="bg-white p-5 rounded-lg shadow-md py-5">
+    <div className="bg-white p-5 rounded-lg shadow-md py-5 mb-5">
       <div className="flex items-center justify-between gap-10">
         <div className="">
           <div className="flex">
