@@ -1,5 +1,5 @@
 import React from "react";
-import Typography from "../components/Typography/Typography";
+import Typography from "../Typography/Typography";
 import ClientReview from "./ClientReview";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
@@ -90,7 +90,7 @@ export default function Review() {
       <Swiper
         navigation={true}
         modules={[Navigation]}
-        className="mySwiper"
+        className="mySwiper "
         slidesPerView={3}
       >
         {reviews &&

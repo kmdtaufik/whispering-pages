@@ -17,7 +17,7 @@ export default function Top() {
   ];
 
   return (
-    <section className="border-t border-t-gray-200 pt-5">
+    <section className="container mx-auto border-t border-t-gray-200 pt-5">
       <div className="grid grid-cols-4">
         <div>
           <h3 className="font-bold text-secondary pb-8">Need Help?</h3>

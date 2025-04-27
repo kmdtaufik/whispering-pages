@@ -1,11 +1,11 @@
 import React from "react";
-import Iconify from "../components/Iconify/Iconify";
-import Typography from "../components/Typography/Typography";
+import Iconify from "../Iconify/Iconify";
+import Typography from "../Typography/Typography";
 
 export default function ClientReview(props) {
   const { name, rating, title, review, imgUrl, profession } = props.reviews;
   return (
-    <div className="bg-white p-5 rounded-lg shadow-md">
+    <div className="bg-white p-5 rounded-lg shadow-md py-5">
       <div className="flex items-center justify-between gap-10">
         <div className="">
           <div className="flex">

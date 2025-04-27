@@ -4,7 +4,7 @@ import Iconify from "../Iconify/Iconify";
 
 export default function Bottom() {
   return (
-    <section className="border-t border-t-gray-200 ">
+    <section className="border-t border-t-gray-200 container mx-auto">
       <div className="justify-between flex items-center py-4">
         <div className="flex items-center gap-4">
           <Link to={"#"} className="text-black opacity-50 text-sm">

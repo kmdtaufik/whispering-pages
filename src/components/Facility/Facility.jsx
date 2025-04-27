@@ -28,11 +28,11 @@ export default function Facility() {
   ];
   return (
     <section className="py-5 border-t border-t-gray-100">
-      <div className="container mx-auto flex justify-between">
+      <div className="container mx-auto flex justify-between ">
         {facilities &&
           facilities.map((facility, index) => (
             <div
-              className={`flex items-center gap-3 ${
+              className={`flex items-center gap-3 pr-8 ${
                 index === facilities.length - 1
                   ? ""
                   : "border-r border-r-gray-100"

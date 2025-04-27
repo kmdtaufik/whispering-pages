@@ -2,8 +2,7 @@ import React from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Facility from "../../components/Facility/Facility";
-import Review from "../../Review/Review";
-
+import Review from "../../components/Review/Review";
 const Home = () => {
   return (
     <>

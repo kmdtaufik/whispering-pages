@@ -10,7 +10,7 @@ export default function Middle() {
     { name: "YouTube", icon: "mdi:youtube" },
   ];
   return (
-    <section className="border-t border-t-gray-200 ">
+    <section className="border-t border-t-gray-200 container mx-auto">
       <div className="justify-between flex items-center">
         <div className="flex items-center py-4 gap-6">
           {socialLinks &&
