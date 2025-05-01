@@ -28,7 +28,7 @@ export default function Facility() {
   ];
   return (
     <section className="py-5 border-t border-t-gray-100">
-      <div className="container mx-auto flex justify-between ">
+      <div className="flex-col md:flex-row container mx-auto flex justify-between ">
         {facilities &&
           facilities.map((facility, index) => (
             <div

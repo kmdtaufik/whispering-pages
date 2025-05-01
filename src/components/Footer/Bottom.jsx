@@ -4,26 +4,44 @@ import Iconify from "../Iconify/Iconify";
 
 export default function Bottom() {
   return (
-    <section className="border-t border-t-gray-200 container mx-auto">
-      <div className="justify-between flex items-center py-4">
-        <div className="flex items-center gap-4">
-          <Link to={"#"} className="text-black opacity-50 text-sm">
-            Term of Use
+    <section className="border-t border-gray-200">
+      <div className="container mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
+        {/* Links Section */}
+        <div className="flex flex-wrap justify-center md:justify-start items-center gap-4">
+          <Link
+            to={"#"}
+            className="text-black opacity-70 hover:opacity-100 text-sm transition"
+          >
+            Terms of Use
           </Link>
-          <Link to={"#"} className="text-black opacity-50 text-sm">
+          <Link
+            to={"#"}
+            className="text-black opacity-70 hover:opacity-100 text-sm transition"
+          >
             Copyright and Software
           </Link>
-          <Link to={"#"} className="text-black opacity-50 text-sm">
-            Faq
+          <Link
+            to={"#"}
+            className="text-black opacity-70 hover:opacity-100 text-sm transition"
+          >
+            FAQ
           </Link>
-          <Link to={"#"} className="text-black opacity-50 text-sm">
-            something
+          <Link
+            to={"#"}
+            className="text-black opacity-70 hover:opacity-100 text-sm transition"
+          >
+            Something
           </Link>
         </div>
-        <div className="flex items-center gap-4">
-          <Iconify icon={"solar:copyright-linear"}></Iconify>
-          <span className="text-black opacity-50 text-sm">
-            All Rights are Reserved.
+
+        {/* Copyright Section */}
+        <div className="flex items-center gap-2 text-center">
+          <Iconify
+            icon={"solar:copyright-linear"}
+            className="text-black opacity-70 text-lg"
+          />
+          <span className="text-black opacity-70 text-sm">
+            All Rights Reserved.
           </span>
         </div>
       </div>

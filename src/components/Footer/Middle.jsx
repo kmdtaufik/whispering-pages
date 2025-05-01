@@ -10,9 +10,9 @@ export default function Middle() {
     { name: "YouTube", icon: "mdi:youtube" },
   ];
   return (
-    <section className="border-t border-t-gray-200 container mx-auto">
-      <div className="justify-between flex items-center">
-        <div className="flex items-center py-4 gap-6">
+    <section className="border-t border-t-gray-200 container mx-auto px-4">
+      <div className="flex flex-col md:flex-row justify-between items-center py-4 gap-4">
+        <div className="flex items-center gap-4 md:gap-6">
           {socialLinks &&
             socialLinks.map((link, index) => (
               <Link
@@ -22,12 +22,12 @@ export default function Middle() {
               >
                 <Iconify
                   icon={link.icon}
-                  className="border rounded-full h-10 w-10 text-black opacity-50"
+                  className="border rounded-full h-10 w-10 text-black opacity-50 hover:opacity-100 transition-opacity"
                 />
               </Link>
             ))}
         </div>
-        <div className=" flex items-center gap-4">
+        <div className="flex items-center gap-4 flex-wrap justify-center">
           <Iconify icon={"logos:mastercard"} className="w-10 h-auto"></Iconify>
           <Iconify icon={"logos:visa"} className="w-10 h-auto"></Iconify>
           <Iconify

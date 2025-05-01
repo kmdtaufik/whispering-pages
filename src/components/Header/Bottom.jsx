@@ -14,7 +14,7 @@ const Bottom = () => {
       >
         All Departments
       </Button>
-      <div className="flex items-center">
+      <div className="hidden md:flex items-center ">
         {navText &&
           navText.map((item, index) => (
             <Link to={`/${item.toLowerCase()}`} key={index}>

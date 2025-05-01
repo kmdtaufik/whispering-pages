@@ -8,31 +8,44 @@ const Middle = () => {
   return (
     <div className="border-b border-t border-b-indigo-50 border-t-indigo-50">
       <div className="flex items-center justify-between container mx-auto py-3">
-        <img src="/Logo.png" width="108" height="37" />
+        {/* Logo - Hidden on small screens */}
+        <img
+          src="/Logo.png"
+          width="108"
+          height="37"
+          className="hidden sm:block"
+        />
 
-        <div className="flex items-center bg-tertiary">
-          <div className=" flex items-center gap-2  px-4">
+        {/* Search Bar */}
+        <div className="flex items-center bg-tertiary w-full sm:w-auto rounded-md sm:rounded-none">
+          <div className="flex items-center gap-2 px-4 w-full sm:h-auto h-12">
+            {/* Hidden on small screens */}
             <Typography
               variant="small"
-              className=" text-nowrap text-black opacity-50"
+              className="hidden sm:block text-nowrap text-black opacity-50"
             >
-              All Cateogry
+              All Category
             </Typography>
-            <div className="">
+            <div className="hidden sm:block">
               <div className="h-[20px] w-[2px] bg-black opacity-20"></div>
             </div>
-            {/* <input className="w-92 outline-none" placeholder="" /> */}
             <Input
-              //   label="Username"
-              //   name="username"
-              className="p-0 border-0 w-92"
+              className="p-0 border-0 w-full sm:w-96"
               placeholder="Search Products"
             />
           </div>
-          <Button variant="primary">Search</Button>
+          <Button variant="primary" className="hidden sm:block">
+            Search
+          </Button>
+          {/* Search Icon for small screens */}
+          <Iconify
+            className="block sm:hidden h-6 w-6 text-black opacity-50"
+            icon={"solar:search-bold"}
+          />
         </div>
 
-        <div className="">
+        {/* Cart - Hidden on small screens */}
+        <div className="hidden sm:block">
           <div className="relative">
             <div className="bg-primary absolute right-0 text-white rounded-full w-6 h-6 text-sm flex items-center justify-center">
               1

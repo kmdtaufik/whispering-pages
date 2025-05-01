@@ -92,12 +92,23 @@ export default function Review() {
         spaceBetween={30}
         modules={[Navigation]}
         className="mySwiper "
-        slidesPerView={3}
+        slidesPerView={1}
+        breakpoints={{
+          640: {
+            slidesPerView: 1,
+          },
+          768: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+        }}
       >
         {reviews &&
           reviews.map((review, index) => (
-            <SwiperSlide>
-              <ClientReview reviews={review} key={index}></ClientReview>
+            <SwiperSlide key={index}>
+              <ClientReview reviews={review}></ClientReview>
             </SwiperSlide>
           ))}
       </Swiper>
