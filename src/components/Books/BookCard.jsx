@@ -24,27 +24,18 @@ const BookCard = ({
       )}
 
       {/* Wishlist Icon */}
-      <button className="absolute top-2 right-2 bg-white p-1 rounded-full shadow hover:bg-gray-100 z-10">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5 text-gray-500"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M5.121 19.121a1.5 1.5 0 002.122 0L12 14.364l4.757 4.757a1.5 1.5 0 002.122-2.122l-4.757-4.757 4.757-4.757a1.5 1.5 0 10-2.122-2.122L12 9.879 7.243 5.121a1.5 1.5 0 00-2.122 2.122l4.757 4.757-4.757 4.757a1.5 1.5 0 000 2.122z"
-          />
-        </svg>
+      <button className="absolute top-2 right-2 bg-white p-1 rounded-full shadow hover:bg-gray-200 z-10">
+        <Iconify
+          icon="fa:heart"
+          className="text-gray-400 hover:text-secondary "
+        ></Iconify>
       </button>
 
       {/* Book Image */}
       <div className="relative">
         <img src={image} alt={title} className="w-full h-72 object-cover" />
         {isOutOfStock && (
-          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white font-semibold text-sm">
+          <div className="absolute inset-0  flex items-center justify-center text-red-800 font-semibold text-lg">
             Out Of Stock
           </div>
         )}

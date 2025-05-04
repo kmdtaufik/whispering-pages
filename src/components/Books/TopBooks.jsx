@@ -9,11 +9,11 @@ import Typography from "../Typography/Typography";
 const books = [
   {
     title: "Healed New Life",
-    subtitle: "How cancer gave me a new life",
+    subtitle: "How cancer gave me a life",
     author: "Alyce Kris",
     price: 90,
     originalPrice: 100,
-    image: "https://images.pexels.com/photos/256450/pexels-photo-256450.jpeg",
+    image: "BookCovers/pexels-photo-256450.jpeg",
     discount: 10,
     rating: 5,
     reviews: 1,
@@ -24,7 +24,7 @@ const books = [
     title: "The Art of Fashion",
     author: "Alec Hansen",
     price: "200.00",
-    image: "https://images.pexels.com/photos/904620/pexels-photo-904620.jpeg",
+    image: "BookCovers/pexels-photo-904620.jpeg",
     discount: null,
     rating: 5,
     reviews: 1,
@@ -36,7 +36,7 @@ const books = [
     author: "Norene Mayert",
     price: 125,
     originalPrice: 130,
-    image: "https://images.pexels.com/photos/2228582/pexels-photo-2228582.jpeg",
+    image: "BookCovers/pexels-photo-2228582.jpeg",
     discount: 4,
     rating: 5,
     reviews: 2,
@@ -48,7 +48,7 @@ const books = [
     author: "Glenna Berge",
     price: 100,
     originalPrice: 120,
-    image: "https://images.pexels.com/photos/2386687/pexels-photo-2386687.jpeg",
+    image: "BookCovers/pexels-photo-2386687.jpeg",
     discount: 17,
     rating: 5,
     reviews: 2,
@@ -60,7 +60,7 @@ const books = [
     author: "Alyce Kris",
     price: 350,
     originalPrice: 400,
-    image: "https://images.pexels.com/photos/6475044/pexels-photo-6475044.jpeg",
+    image: "BookCovers/pexels-photo-6475044.jpeg",
     discount: 13,
     rating: 4,
     reviews: 2,
@@ -73,7 +73,7 @@ const books = [
     price: 150,
     originalPrice: 180,
     image:
-      "https://images.pexels.com/photos/31867928/pexels-photo-31867928/free-photo-of-vintage-pocket-watch-and-book-still-life.jpeg",
+      "BookCovers/free-photo-of-vintage-pocket-watch-and-book-still-life.jpeg",
     discount: 17,
     rating: 4,
     reviews: 3,
@@ -85,7 +85,7 @@ const books = [
     author: "Jane Smith",
     price: 200,
     originalPrice: 250,
-    image: "https://images.pexels.com/photos/374016/pexels-photo-374016.jpeg",
+    image: "BookCovers/pexels-photo-374016.jpeg",
     discount: 20,
     rating: 5,
     reviews: 5,
@@ -97,7 +97,7 @@ const books = [
     author: "Elon Stark",
     price: 300,
     originalPrice: 350,
-    image: "https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg",
+    image: "BookCovers/pexels-photo-3184325.jpeg",
     discount: 14,
     rating: 4,
     reviews: 4,
@@ -109,7 +109,7 @@ const books = [
     author: "Chef Ramsey",
     price: 120,
     originalPrice: 150,
-    image: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg",
+    image: "BookCovers/pexels-photo-17849668.webp",
     discount: 20,
     rating: 5,
     reviews: 10,
@@ -121,7 +121,7 @@ const books = [
     author: "Wander Lust",
     price: 180,
     originalPrice: 200,
-    image: "https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg",
+    image: "BookCovers/pexels-photo-14097126.jpeg",
     discount: 10,
     rating: 4,
     reviews: 6,
@@ -132,7 +132,7 @@ const books = [
 
 export default function TopBooks() {
   return (
-    <section className="container mx-auto border-t border-t-gray-200">
+    <section className="container mx-auto border-t border-t-gray-200 ">
       <div>
         <Typography variant="h1" className="text-secondary py-5">
           {" "}
@@ -141,19 +141,15 @@ export default function TopBooks() {
       </div>
       <Swiper
         navigation={true}
-        spaceBetween={5}
+        spaceBetween={20}
         modules={[Navigation]}
         className="mySwiper "
         slidesPerView={2}
+        centeredSlides={true}
         breakpoints={{
-          640: {
-            slidesPerView: 2,
-          },
-          768: {
-            slidesPerView: 2,
-          },
           1024: {
             slidesPerView: 6,
+            centeredSlides: false,
           },
         }}
       >
