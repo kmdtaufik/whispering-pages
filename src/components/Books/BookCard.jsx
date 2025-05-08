@@ -1,5 +1,5 @@
-import React from "react";
-import Iconify from "../Iconify/Iconify"; // Ensure you have installed @iconify/react
+import React, { memo, useMemo, useState } from "react";
+import Iconify from "../Iconify/Iconify";
 
 const BookCard = ({
   title,
@@ -8,35 +8,81 @@ const BookCard = ({
   price,
   originalPrice,
   image,
+  hoverImage,
   discount,
   rating,
   reviews,
   isHot,
   isOutOfStock,
+  className = "", //Add custom classes
 }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Memoize the rating stars to avoid recalculating on every render
+  const ratingStars = useMemo(
+    () =>
+      [1, 2, 3, 4, 5].map((i) => (
+        <Iconify
+          key={i}
+          icon="material-symbols:star"
+          className={rating >= i ? "text-amber-300" : "text-gray-300"}
+        />
+      )),
+    [rating]
+  );
+
   return (
-    <div className="relative bg-white rounded-lg shadow-md overflow-hidden w-full max-w-xs">
+    <div
+      className={`border border-gray-200 relative bg-white rounded-lg shadow-md overflow-hidden w-full max-w-xs ${className}`}
+    >
       {/* Discount/Hot Badge */}
-      {isHot && (
-        <span className="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded z-10">
-          {discount ? `-${discount}%` : "Hot"}
-        </span>
+      {(discount != null || isHot) && (
+        <div className="absolute top-2 left-2 space-y-1 z-10">
+          {discount != null && (
+            <span className="bg-orange-600 text-white text-xs font-bold px-2 py-1 rounded">
+              -{discount}%
+            </span>
+          )}
+          {isHot && (
+            <span className="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">
+              Hot
+            </span>
+          )}
+        </div>
       )}
 
       {/* Wishlist Icon */}
       <button className="absolute top-2 right-2 bg-white p-1 rounded-full shadow hover:bg-gray-200 z-10">
         <Iconify
           icon="fa:heart"
-          className="text-gray-400 hover:text-secondary "
-        ></Iconify>
+          className="text-gray-400 hover:text-secondary"
+        />
       </button>
 
       {/* Book Image */}
       <div className="relative">
-        <img src={image} alt={title} className="w-full h-72 object-cover" />
+        <img
+          src={isHovered && hoverImage ? hoverImage : image}
+          alt={title}
+          className="w-full h-62 object-cover transition-transform duration-300"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        />
         {isOutOfStock && (
-          <div className="absolute inset-0  flex items-center justify-center text-red-800 font-semibold text-lg">
+          <div className="absolute inset-0 flex items-center justify-center text-red-800 font-semibold text-lg bg-white bg-opacity-75">
             Out Of Stock
+          </div>
+        )}
+
+        {/* Hover Options */}
+        {isHovered && !isOutOfStock && (
+          <div className="absolute bottom-0 left-0 right-0  bg-transparent flex justify-around items-center py-2 transition-opacity duration-300">
+            <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+              <Iconify icon={"solar:cart-line-duotone"}></Iconify>
+            </button>
+            <button className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">
+              <Iconify icon={"mdi-light:eye"}></Iconify>
+            </button>
           </div>
         )}
       </div>
@@ -45,13 +91,7 @@ const BookCard = ({
       <div className="p-4 text-center">
         {/* Icon-based Rating */}
         <div className="flex justify-center items-center space-x-0.5 mb-1">
-          {[1, 2, 3, 4, 5].map((i) => (
-            <Iconify
-              key={i}
-              icon="material-symbols:star"
-              className={rating >= i ? "text-amber-300" : "text-gray-300"}
-            />
-          ))}
+          {ratingStars}
           <span className="text-gray-500 ml-1 text-xs">({reviews})</span>
         </div>
 
@@ -73,4 +113,4 @@ const BookCard = ({
   );
 };
 
-export default BookCard;
+export default memo(BookCard);

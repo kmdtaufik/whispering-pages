@@ -143,6 +143,7 @@ export default function TopBooks() {
         navigation={true}
         spaceBetween={20}
         modules={[Navigation]}
+        loop={true}
         className="mySwiper "
         slidesPerView={2}
         centeredSlides={true}

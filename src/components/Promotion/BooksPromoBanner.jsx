@@ -26,7 +26,7 @@ const BooksPromoBanner = () => {
         </div>
 
         {/* Floating Image */}
-        <div className="hidden md:flex md:w-2/5 w-full relative z-20  justify-center md:justify-end">
+        <div className="hidden md:flex md:w-2/5 w-full relative z-20   md:justify-end">
           <img
             src="https://images.pexels.com/photos/31737662/pexels-photo-31737662/free-photo-of-woman-sitting-in-front-of-large-bookshelf.jpeg"
             alt="Bookshelf in library"
