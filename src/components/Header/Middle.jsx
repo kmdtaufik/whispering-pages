@@ -28,7 +28,9 @@ const Middle = () => {
               placeholder="Search Products"
             />
           </div>
-          <Button variant="primary">Search</Button>
+          <Button variant="primary" className="rounded">
+            Search
+          </Button>
         </div>
 
         {/* Cart */}
