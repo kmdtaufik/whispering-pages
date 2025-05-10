@@ -12,11 +12,13 @@ import BooksOfTheMonth from "../../components/sections/BooksOfTheMonth";
 import TopCategories from "../../components/sections/TopCategories";
 import TrendingBooks from "../../components/sections/TrendingBooks";
 import PromoSection from "../../components/sections/PromoSection";
+import SlideShow from "../../components/sections/SlideShow";
 
 const Home = () => {
   return (
     <>
       <Header></Header>
+      <SlideShow></SlideShow>
       <PromoSection></PromoSection>
       <TrendingBooks></TrendingBooks>
       <TopCategories>/* Top Categories Section */</TopCategories>
