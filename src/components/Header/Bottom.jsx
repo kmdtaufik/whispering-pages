@@ -5,7 +5,7 @@ import { Link } from "react-router";
 const Bottom = () => {
   const navText = ["Home", "Store", "Blog", "Contact", "faq"];
   return (
-    <div className=" flex container mx-auto py-3">
+    <div className=" md:flex container mx-auto py-3 hidden">
       <Button
         variant="secondary"
         leftIcon="fe:bar"

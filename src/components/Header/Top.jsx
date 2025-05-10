@@ -4,7 +4,7 @@ import Iconify from "../Iconify/Iconify";
 
 const Top = () => {
   return (
-    <div className="py-4 bg-tertiary ">
+    <div className="py-4 bg-tertiary hidden md:block">
       <div className="container mx-auto flex gap-4 justify-end">
         <div className="flex items-center gap-2">
           <Iconify icon={"material-symbols:person-outline"}></Iconify>
