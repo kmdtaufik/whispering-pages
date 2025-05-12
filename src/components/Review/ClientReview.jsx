@@ -9,28 +9,15 @@ export default function ClientReview(props) {
       <div className="flex items-center justify-between gap-10">
         <div className="">
           <div className="flex">
-            <Iconify
-              icon={"material-symbols:star"}
-              className={rating >= 1 ? "text-amber-300" : "text-secondary"}
-            ></Iconify>
-            <Iconify
-              icon={"material-symbols:star"}
-              className={rating >= 2 ? "text-amber-300" : "text-secondary"}
-            ></Iconify>
-            <Iconify
-              icon={"material-symbols:star"}
-              className={rating >= 3 ? "text-amber-300" : "text-secondary"}
-            ></Iconify>
-            <Iconify
-              icon={"material-symbols:star"}
-              className={rating >= 4 ? "text-amber-300" : "text-secondary"}
-            ></Iconify>
-            <Iconify
-              icon={"material-symbols:star"}
-              className={rating >= 5 ? "text-amber-300" : "text-secondary"}
-            ></Iconify>
+            {[1, 2, 3, 4, 5].map((i) => (
+              <Iconify
+                key={i}
+                icon={"material-symbols:star"}
+                className={rating >= i ? "text-amber-300" : "text-secondary"}
+              ></Iconify>
+            ))}
           </div>
-          <Typography variant="h5" className="text-secondary">
+          <Typography className="text-secondary font-primary font-bold text-[18px]">
             {title}
           </Typography>
         </div>
@@ -41,7 +28,7 @@ export default function ClientReview(props) {
           ></Iconify>
         </div>
       </div>
-      <Typography className="text-black opacity-50 text-justify" variant="p">
+      <Typography className="text-stone-100 text-justify font-primary text-[14px]">
         {review}
       </Typography>
       <div className="flex items-center gap-5 py-5">

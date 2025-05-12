@@ -4,8 +4,8 @@ import Iconify from "../Iconify/Iconify";
 
 export default function Bottom() {
   return (
-    <section className="border-t border-gray-200">
-      <div className="container mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
+    <section className="border-t border-gray-200 font-secondary">
+      <div className="container mx-auto px-4 py-2 flex flex-col md:flex-row justify-between items-center gap-4">
         {/* Links Section */}
         <div className="flex flex-wrap justify-center md:justify-start items-center gap-4">
           <Link

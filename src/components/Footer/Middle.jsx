@@ -10,19 +10,19 @@ export default function Middle() {
     { name: "YouTube", icon: "mdi:youtube" },
   ];
   return (
-    <section className="border-t border-t-gray-200 container mx-auto px-4">
-      <div className="flex flex-col md:flex-row justify-between items-center py-4 gap-4">
-        <div className="flex items-center gap-4 md:gap-6">
+    <section className="border-t border-t-gray-200  mx-auto px-4 font-secondary">
+      <div className="flex flex-col md:flex-row justify-between items-center py-2 gap-2 container">
+        <div className="flex items-center gap-2 md:gap-3 bg-white">
           {socialLinks &&
             socialLinks.map((link, index) => (
               <Link
                 key={index}
                 to={"#"}
-                className="text-sm transition-colors duration-300"
+                className="border border-gray-300 transition-colors duration-300 rounded-full hover:bg-secondary"
               >
                 <Iconify
                   icon={link.icon}
-                  className="border rounded-full h-10 w-10 text-black opacity-50 hover:opacity-100 transition-opacity"
+                  className=" rounded-full h-auto w-auto p-2.5 hover:text-white  text-secondary"
                 />
               </Link>
             ))}

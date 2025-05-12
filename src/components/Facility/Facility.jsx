@@ -27,12 +27,12 @@ export default function Facility() {
     },
   ];
   return (
-    <section className="py-5 border-t border-t-gray-100">
+    <section className="py-5 border-t border-t-gray-100 font ">
       <div className="flex-col md:flex-row container mx-auto flex justify-between ">
         {facilities &&
           facilities.map((facility, index) => (
             <div
-              className={`flex items-center gap-3 pr-8 ${
+              className={`flex flex-row py-5 px-2 ${
                 index === facilities.length - 1
                   ? ""
                   : "border-r border-r-gray-100"
@@ -41,20 +41,26 @@ export default function Facility() {
             >
               <Iconify
                 icon={facility.icon}
-                className="w-32 h-auto text-primary"
+                className="w-12 h-auto text-primary"
               ></Iconify>
-              <div>
-                <Typography variant="h5" className="text-secondary font-bold">
+              <div className="px-3">
+                <Typography
+                  // variant="h5"
+                  className=" font-primary py-1.5 text-secondary text-[16px] font-bold"
+                >
                   {facility.title}
                 </Typography>
-                <Typography variant="small" className="text-black opacity-50">
+                <Typography
+                  variant="small"
+                  className="text-neutral-400 text-[14px] font-medium  py-1.5 font-secondary"
+                >
                   {facility.description}
                 </Typography>
                 <br />
                 <Link to={"#"}>
                   <Typography
                     variant="small"
-                    className="flex text-primary items-center"
+                    className="flex text-primary text-[14px] font-medium items-center py-1.5 font-secondary"
                   >
                     Learn more{" "}
                     <Iconify icon={"mingcute:arrow-right-up-line"}></Iconify>
