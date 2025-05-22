@@ -5,7 +5,7 @@ import Typography from "../Typography/Typography";
 export default function ClientReview(props) {
   const { name, rating, title, review, imgUrl, profession } = props.reviews;
   return (
-    <div className="bg-white p-5 rounded-lg shadow-md py-5 mb-5">
+    <div className="bg-white p-5  shadow-md py-5 mb-5 border border-gray-200">
       <div className="flex items-center justify-between gap-10">
         <div className="">
           <div className="flex">
@@ -28,7 +28,7 @@ export default function ClientReview(props) {
           ></Iconify>
         </div>
       </div>
-      <Typography className="text-stone-100 text-justify font-primary text-[14px]">
+      <Typography className="text-neutral-400 text-justify font-primary font-medium text-[14px]">
         {review}
       </Typography>
       <div className="flex items-center gap-5 py-5">
@@ -38,10 +38,10 @@ export default function ClientReview(props) {
           className="w-10 h-10 rounded-full object-cover"
         />
         <div className="flex flex-col">
-          <Typography variant="small" className="uppercase text-secondary">
+          <Typography className="uppercase text-secondary font-secondary font-bold text-sm">
             {name}
           </Typography>
-          <Typography className="" variant="small">
+          <Typography className="uppercase text-neutral-400 font-secondary font-medium text-[13px]">
             {profession}
           </Typography>
         </div>

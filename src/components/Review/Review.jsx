@@ -1,10 +1,12 @@
 import React from "react";
+import { useRef, useEffect, useState } from "react";
 import Typography from "../Typography/Typography";
 import ClientReview from "./ClientReview";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import Iconify from "../Iconify/Iconify";
 
 export default function Review() {
   const reviews = [
@@ -78,40 +80,73 @@ export default function Review() {
       profession: "Artist",
     },
   ];
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
+  const [swiperInstance, setSwiperInstance] = useState(null);
+
+  useEffect(() => {
+    if (
+      swiperInstance &&
+      prevRef.current &&
+      nextRef.current &&
+      !swiperInstance.destroyed
+    ) {
+      swiperInstance.params.navigation.prevEl = prevRef.current;
+      swiperInstance.params.navigation.nextEl = nextRef.current;
+      swiperInstance.navigation.destroy();
+      swiperInstance.navigation.init();
+      swiperInstance.navigation.update();
+    }
+  }, [swiperInstance]);
+
   return (
     <section className="container mx-auto py-10 border-t border-t-gray-100">
       <Typography
         variant="h3"
-        className=" font-primary font-bold text-secondary pb-10"
+        className="text-2xl font-primary font-bold text-secondary pb-10 container mx-auto"
       >
-        {" "}
         Happy Client Say!
-      </Typography>{" "}
-      <Swiper
-        navigation={true}
-        spaceBetween={30}
-        modules={[Navigation]}
-        className="mySwiper "
-        slidesPerView={1}
-        breakpoints={{
-          640: {
-            slidesPerView: 1,
-          },
-          768: {
-            slidesPerView: 2,
-          },
-          1024: {
-            slidesPerView: 3,
-          },
-        }}
-      >
-        {reviews &&
-          reviews.map((review, index) => (
-            <SwiperSlide key={index}>
-              <ClientReview reviews={review}></ClientReview>
-            </SwiperSlide>
-          ))}
-      </Swiper>
+      </Typography>
+
+      <div className="group flex">
+        {/* Left Nav Button (Hidden by default, shows on hover) */}
+        <button ref={prevRef} className="hidden group-hover:block pr-5">
+          <Iconify
+            icon="simple-line-icons:arrow-left"
+            className="text-gray-500 hover:text-black "
+          />
+        </button>
+
+        {/* Swiper */}
+        <Swiper
+          modules={[Navigation]}
+          loop={true}
+          spaceBetween={25}
+          slidesPerView={1}
+          onSwiper={setSwiperInstance}
+          className="mySwiper"
+          breakpoints={{
+            640: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+        >
+          {reviews &&
+            reviews.map((review, index) => (
+              <SwiperSlide key={index}>
+                <ClientReview reviews={review} />
+              </SwiperSlide>
+            ))}
+        </Swiper>
+
+        {/* Right Nav Button (Hidden by default, shows on hover) */}
+        <button ref={nextRef} className="hidden group-hover:block pl-5">
+          <Iconify
+            icon="simple-line-icons:arrow-right"
+            className="text-gray-500 hover:text-black"
+          />
+        </button>
+      </div>
     </section>
   );
 }
