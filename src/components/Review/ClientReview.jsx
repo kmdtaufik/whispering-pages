@@ -1,4 +1,3 @@
-import React from "react";
 import Iconify from "../Iconify/Iconify";
 import Typography from "../Typography/Typography";
 

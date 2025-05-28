@@ -2,17 +2,18 @@ import React from "react";
 
 const BooksPromoBanner = () => {
   return (
-    <section className="relative py-16 px-6 md:px-16 overflow-hidden">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10 relative">
+    <section className="py-16 overflow-hidden bg-white">
+      <div className="flex flex-col md:flex-row items-stretch justify-start gap-10">
         {/* Green Block with Text */}
-        <div className="bg-green-950 text-white md:w-3/5 w-full rounded-r-2xl px-8 py-10 relative z-10">
-          <h4 className="uppercase text-sm tracking-widest mb-2">
+        <div className="bg-[url('https://bookio.wpbingosite.com/wp-content/uploads/2021/07/img1-9.jpg')] bg-cover bg-left text-white md:w-3/5 w-full px-8 py-10">
+          <h4 className="uppercase text-sm tracking-widest mb-2 font-secondary">
             Welcome to the wonderful world of books
           </h4>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-snug">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-snug font-primary">
             Cheap Books, <br /> Fantastic Choice
           </h2>
-          <p className="text-gray-300 mb-6 text-sm leading-relaxed">
+          <hr className="w-[10%] border-white mb-4" />
+          <p className="text-gray-300 mb-6 text-sm leading-relaxed font-secondary">
             If you're looking for great value second hand books, then World of
             Books is the place for you. As you may already know, we aren’t like
             other online book stores. For starters, we don’t believe that books
@@ -26,11 +27,11 @@ const BooksPromoBanner = () => {
         </div>
 
         {/* Floating Image */}
-        <div className="hidden md:flex md:w-2/5 w-full relative z-20   md:justify-end">
+        <div className="hidden md:flex md:w-2/5 relative items-center justify-end">
           <img
             src="https://images.pexels.com/photos/31737662/pexels-photo-31737662/free-photo-of-woman-sitting-in-front-of-large-bookshelf.jpeg"
             alt="Bookshelf in library"
-            className=" absolute rounded-lg shadow-xl w-[490px] h-[300px] md:object-cover md:top-9/12 md:left-[-80px] transform md:-translate-y-1/2"
+            className="absolute w-[690px] h-[500px] object-cover top-2/3 left-[-80px] transform -translate-y-1/2 rounded"
           />
         </div>
       </div>

@@ -103,17 +103,17 @@ export default function Review() {
     <section className="container mx-auto py-10 border-t border-t-gray-100">
       <Typography
         variant="h3"
-        className="text-2xl font-primary font-bold text-secondary pb-10 container mx-auto"
+        className="pl-9 text-2xl font-primary font-bold text-secondary pb-6 container mx-auto"
       >
         Happy Client Say!
       </Typography>
 
       <div className="group flex">
         {/* Left Nav Button (Hidden by default, shows on hover) */}
-        <button ref={prevRef} className="hidden group-hover:block pr-5">
+        <button ref={prevRef} className=" pr-3">
           <Iconify
             icon="simple-line-icons:arrow-left"
-            className="text-gray-500 hover:text-black "
+            className="group-hover:text-gray-500 hover:text-black text-transparent transition duration-300 ease-in-out"
           />
         </button>
 
@@ -140,10 +140,10 @@ export default function Review() {
         </Swiper>
 
         {/* Right Nav Button (Hidden by default, shows on hover) */}
-        <button ref={nextRef} className="hidden group-hover:block pl-5">
+        <button ref={nextRef} className=" pl-3">
           <Iconify
             icon="simple-line-icons:arrow-right"
-            className="text-gray-500 hover:text-black"
+            className="group-hover:text-gray-500 hover:text-black text-transparent transition duration-300 ease-in-out"
           />
         </button>
       </div>
