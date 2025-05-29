@@ -82,7 +82,7 @@ const BookShowcase = () => {
                 <img
                   src={book.image}
                   alt={book.title}
-                  className="rounded-lg w-auto h-auto object-cover"
+                  className=" md:w-[586px] md:h-[356px] object-cover h-auto w-auto"
                 />
               </SwiperSlide>
             ))}
@@ -105,14 +105,16 @@ const BookShowcase = () => {
 
         {/* Caption Section */}
         <div className="text-center mt-10 transition-all duration-300">
-          <h2 className="text-3xl font-bold text-green-900">
+          <h2 className="text-4xl font-bold text-green-900 font-primary">
             {books[activeIndex].caption}
           </h2>
           <p className="text-gray-600 mt-2">
-            <span className="font-semibold">{books[activeIndex].title}</span> —{" "}
-            {books[activeIndex].subtitle}
+            <span className="font-semibold text-lg font-secondary">
+              {books[activeIndex].title}
+            </span>{" "}
+            — {books[activeIndex].subtitle}
           </p>
-          <button className="mt-6 bg-white text-secondary px-6 py-2 rounded hover:bg-green-800 hover:text-white transition-ease-in-out duration-300">
+          <button className="mt-6 bg-white text-secondary font-secondary px-6 py-2 rounded hover:bg-green-800 hover:text-white transition-ease-in-out duration-300">
             Explore now →
           </button>
         </div>

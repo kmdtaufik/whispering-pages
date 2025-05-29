@@ -55,8 +55,8 @@ const TopCategories = () => {
   }, []);
 
   return (
-    <section className="relative py-10 bg-gradient-to-r from-slate-100 to-gray-300 ">
-      <h2 className="text-center text-2xl font-semibold text-secondary mb-8">
+    <section className="relative py-10 bg-[url(https://bookio.wpbingosite.com/wp-content/uploads/2021/07/img1-11.jpg)]">
+      <h2 className="text-center text-2xl font-bold font-primary text-secondary mb-8">
         Top Categories
       </h2>
 
@@ -78,15 +78,15 @@ const TopCategories = () => {
           {categories.map((cat, index) => (
             <SwiperSlide key={index}>
               <div className="flex flex-col items-center text-center">
-                <div className="w-28 h-28 md:w-36 md:h-36 rounded-full bg-white shadow-lg flex items-center justify-center overflow-hidden transition-transform hover:animate-[wiggle_1s_ease-in-out]">
+                <div className="w-50 h-50 md:w-36 md:h-36 rounded-full bg-white shadow-lg flex items-end justify-center overflow-hidden transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-xl hover:shadow-gray-400/50 cursor-pointer">
                   <img
                     src={cat.image}
                     alt={cat.label}
-                    className="object-cover h-full w-full"
+                    className="h-[80%] w-auto object-contain transition-transform duration-300 wiggle hover:scale-105"
                     loading="lazy"
                   />
                 </div>
-                <span className="mt-3 text-xs font-medium text-green-900">
+                <span className="mt-3 font-secondary font-bold text-sm text-green-900 transition-colors duration-200 hover:text-secondary">
                   {cat.label}
                 </span>
               </div>
@@ -97,15 +97,15 @@ const TopCategories = () => {
         {/* Navigation Buttons */}
         <button
           ref={prevRef}
-          className="top-categories-prev absolute top-1/2 left-0 -translate-y-1/2 hidden group-hover:block z-10"
+          className="top-categories-prev absolute top-1/2 left-0 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 bg-white/80 rounded-full p-2 shadow-md hover:bg-white hover:shadow-lg"
         >
-          <ChevronLeft className="w-8 h-8 text-gray-700 hover:text-secondary" />
+          <ChevronLeft className="w-6 h-6 text-gray-700 hover:text-secondary transition-colors duration-200" />
         </button>
         <button
           ref={nextRef}
-          className="top-categories-next absolute top-1/2 right-0 -translate-y-1/2 hidden group-hover:block z-10"
+          className="top-categories-next absolute top-1/2 right-0 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 bg-white/80 rounded-full p-2 shadow-md hover:bg-white hover:shadow-lg"
         >
-          <ChevronRight className="w-8 h-8 text-gray-700 hover:text-secondary" />
+          <ChevronRight className="w-6 h-6 text-gray-700 hover:text-secondary transition-colors duration-200" />
         </button>
       </div>
     </section>

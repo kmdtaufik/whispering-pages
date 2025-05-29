@@ -141,7 +141,7 @@ export default function BooksPromotion() {
     <section className="container mx-auto py-10">
       <div className="container mx-auto ">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold text-secondary">
+          <h2 className="text-2xl font-bold text-secondary font-primary">
             Travel the World from Home
           </h2>
           <a

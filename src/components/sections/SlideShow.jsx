@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const slides = [
@@ -32,54 +32,193 @@ const slides = [
 ];
 
 const SlideShow = () => {
-  const [current, setCurrent] = useState(0);
-  // const [isClient, setIsClient] = useState(false);
-  const length = slides.length;
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
   const intervalRef = useRef(null);
+  const slideContainerRef = useRef(null);
 
-  const nextSlide = () => setCurrent((prev) => (prev + 1) % length);
-  const prevSlide = () => setCurrent((prev) => (prev - 1 + length) % length);
+  const totalSlides = slides.length;
 
+  // Memoized navigation functions
+  const goToSlide = useCallback(
+    (index) => {
+      if (isAnimating) return;
+      setIsAnimating(true);
+      setCurrentSlide(index);
+
+      // Reset animation flag after transition
+      setTimeout(() => setIsAnimating(false), 700);
+    },
+    [isAnimating]
+  );
+
+  const nextSlide = useCallback(() => {
+    if (isAnimating) return;
+    const next = (currentSlide + 1) % totalSlides;
+    goToSlide(next);
+  }, [currentSlide, totalSlides, goToSlide, isAnimating]);
+
+  const prevSlide = useCallback(() => {
+    if (isAnimating) return;
+    const prev = (currentSlide - 1 + totalSlides) % totalSlides;
+    goToSlide(prev);
+  }, [currentSlide, totalSlides, goToSlide, isAnimating]);
+
+  // Auto-play functionality
   useEffect(() => {
-    // setIsClient(true);
-    intervalRef.current = setInterval(nextSlide, 7000);
-    return () => clearInterval(intervalRef.current);
+    // Clear any existing interval first
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+
+    // Only start auto-play if not currently animating
+    if (!isAnimating) {
+      intervalRef.current = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % totalSlides);
+      }, 7000);
+    }
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+  }, [currentSlide, isAnimating, totalSlides]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "ArrowLeft") prevSlide();
+      if (e.key === "ArrowRight") nextSlide();
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [prevSlide, nextSlide]);
+
+  // Pause auto-play on hover
+  const handleMouseEnter = useCallback(() => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
   }, []);
 
+  const handleMouseLeave = useCallback(() => {
+    if (!isAnimating) {
+      intervalRef.current = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % totalSlides);
+      }, 7000);
+    }
+  }, [isAnimating, totalSlides]);
+
   return (
-    <div className="relative overflow-hidden group md:h-[90vh] w-full h-[25vh]">
+    <div
+      className="relative overflow-hidden group md:h-[90vh] h-[50vh] w-full"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      role="region"
+      aria-label="Image slideshow"
+    >
+      {/* Slides Container */}
       <div
-        className="flex transition-transform duration-700 ease-in-out h-full"
-        style={{ transform: `translateX(-${current * 100}%)` }}
+        ref={slideContainerRef}
+        className="flex h-full transition-transform duration-700 ease-in-out"
+        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
       >
-        {slides.map((slide, idx) => (
+        {slides.map((slide, index) => (
           <div
-            key={idx}
-            className="min-w-full h-full relative "
+            key={index}
+            className="min-w-full h-full relative flex items-center"
             style={{
               backgroundImage: `url(${slide.bgImage})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
             }}
+            role="img"
+            aria-label={`Slide ${index + 1}: ${slide.titleTop} ${
+              slide.titleHighlight
+            } ${slide.titleEnd}`}
           >
-            <div className="absolute inset-0 flex flex-col justify-center px-4 sm:px-6 md:px-16 text-secondary text-center sm:text-left">
-              <div className="max-w-[90%] sm:max-w-md mx-auto sm:mx-0 sm:max-h-md">
-                <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight">
-                  <span>{slide.titleTop} </span>
-                  <span className="text-primary underline">
-                    {slide.titleHighlight}
-                  </span>
-                  <br />
-                  <span>{slide.titleEnd}</span>
-                </h1>
-                <p className="mt-3 text-sm sm:text-base text-gray-200">
-                  {slide.subtitle}
-                </p>
-                <button className="mt-4 bg-orange-600 hover:bg-orange-700 text-white text-xs sm:text-sm font-semibold px-4 sm:px-6 py-2 rounded w-fit">
-                  {slide.cta}
-                </button>
-              </div>
+            {/* Content with animated text dropping from above */}
+            <div
+              className={`ml-[10%] max-w-[90%] sm:max-w-md text-white transform transition-all duration-800 ease-out ${
+                currentSlide === index
+                  ? "translate-y-0 opacity-100"
+                  : "-translate-y-12 opacity-0"
+              }`}
+              style={{
+                transitionDelay: currentSlide === index ? "200ms" : "0ms",
+              }}
+            >
+              <h1 className="text-2xl sm:text-3xl md:text-6xl font-primary font-bold leading-tight mb-4">
+                <span
+                  className={`text-secondary inline-block transform transition-all duration-700 ease-out ${
+                    currentSlide === index
+                      ? "translate-y-0 opacity-100"
+                      : "-translate-y-8 opacity-0"
+                  }`}
+                  style={{
+                    transitionDelay: currentSlide === index ? "300ms" : "0ms",
+                  }}
+                >
+                  {slide.titleTop}{" "}
+                </span>
+                <span
+                  className={`text-primary underline font-primary font-bold inline-block transform transition-all duration-700 ease-out ${
+                    currentSlide === index
+                      ? "translate-y-0 opacity-100"
+                      : "-translate-y-8 opacity-0"
+                  }`}
+                  style={{
+                    transitionDelay: currentSlide === index ? "450ms" : "0ms",
+                  }}
+                >
+                  {slide.titleHighlight}
+                </span>
+                <br />
+                <span
+                  className={`text-secondary font-primary inline-block transform transition-all duration-700 ease-out ${
+                    currentSlide === index
+                      ? "translate-y-0 opacity-100"
+                      : "-translate-y-8 opacity-0"
+                  }`}
+                  style={{
+                    transitionDelay: currentSlide === index ? "600ms" : "0ms",
+                  }}
+                >
+                  {slide.titleEnd}
+                </span>
+              </h1>
+
+              <p
+                className={`text-sm sm:text-base font-secondary   text-gray-500 mb-6 leading-relaxed transform transition-all duration-600 ease-out ${
+                  currentSlide === index
+                    ? "translate-y-0 opacity-100"
+                    : "-translate-y-6 opacity-0"
+                }`}
+                style={{
+                  transitionDelay: currentSlide === index ? "750ms" : "0ms",
+                }}
+              >
+                {slide.subtitle}
+              </p>
+
+              <button
+                className={`bg-orange-600 hover:bg-orange-700 active:bg-orange-800 text-white text-xs sm:text-sm font-semibold px-4 sm:px-6 py-2 rounded w-fit transition-all duration-500 hover:transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-transparent transform ${
+                  currentSlide === index
+                    ? "translate-y-0 opacity-100"
+                    : "-translate-y-4 opacity-0"
+                }`}
+                style={{
+                  transitionDelay: currentSlide === index ? "900ms" : "0ms",
+                }}
+                aria-label={slide.cta}
+              >
+                {slide.cta}
+              </button>
             </div>
           </div>
         ))}
@@ -88,29 +227,51 @@ const SlideShow = () => {
       {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
-        className="hidden sm:flex absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition z-10"
+        disabled={isAnimating}
+        className="hidden sm:flex absolute left-6 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
+        aria-label="Previous slide"
       >
-        <ChevronLeft />
-      </button>
-      <button
-        onClick={nextSlide}
-        className="hidden sm:flex absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition z-10"
-      >
-        <ChevronRight />
+        <ChevronLeft size={20} />
       </button>
 
-      {/* Pagination */}
-      <div className="absolute bottom-4 sm:bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
-        {slides.map((_, idx) => (
+      <button
+        onClick={nextSlide}
+        disabled={isAnimating}
+        className="hidden sm:flex absolute right-6 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
+        aria-label="Next slide"
+      >
+        <ChevronRight size={20} />
+      </button>
+
+      {/* Slide Indicators */}
+      <div
+        className="absolute bottom-4 sm:bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10"
+        role="tablist"
+        aria-label="Slide navigation"
+      >
+        {slides.map((_, index) => (
           <span
-            key={idx}
-            onClick={() => setCurrent(idx)}
-            className={`w-3 h-1 rounded-full inline-block cursor-pointer ${
-              current === idx ? "bg-black" : "bg-gray-400"
-            }`}
-          ></span>
+            key={index}
+            onClick={() => goToSlide(index)}
+            className={`w-3 h-1 rounded-full inline-block cursor-pointer transition-all duration-300 ${
+              currentSlide === index ? "bg-black" : "bg-gray-400"
+            } disabled:opacity-50 disabled:cursor-not-allowed`}
+            role="tab"
+            aria-selected={currentSlide === index}
+            aria-label={`Go to slide ${index + 1}`}
+          />
         ))}
       </div>
+
+      {/* Progress Bar */}
+      {/* <div className="absolute bottom-0 left-0 w-full h-1 bg-black/20">
+        <div
+          className="h-full bg-orange-500 transition-all duration-300 ease-out"
+          style={{
+            width: `${((currentSlide + 1) / totalSlides) * 100}%`,
+          }}
+        />
+      </div> */}
     </div>
   );
 };

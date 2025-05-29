@@ -1,127 +1,170 @@
-import React from "react";
-import Iconify from "../Iconify/Iconify";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import { Link } from "react-router";
+import FeaturedBook from "../Books/FeaturedBook";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-const BooksOfTheMonth = () => {
+export default function BookOfTheMonth() {
   const books = [
     {
       id: 1,
       title: "Healed New Life",
       author: "Alyce Kris",
-      image: "https://m.media-amazon.com/images/I/91Sy3S-198L._AC_UL320_.jpg",
-      originalPrice: 100,
       price: 90,
-      discount: 10,
-      rating: 4,
-      reviews: 1,
-      tags: ["For kids", "First published in 2014", "Copyright by Wpbingo"],
-      outOfStock: false,
-      buttonText: "Add to Cart",
+      originalPrice: 100,
+      image:
+        "https://bookio.wpbingosite.com/wp-content/uploads/2018/05/cup-cake-diares-23-480x693.jpg",
+      rating: 5,
+      reviews: 12,
+      discount: "-10%",
+      features: ["For kids", "First published in 2014", "Copyright by Wpbingo"],
+      stock: "in",
+      action: "ADD TO CART",
     },
     {
       id: 2,
       title: "Cup Cake Diaries",
       author: "Alec Hansen",
-      image: "https://m.media-amazon.com/images/I/81lfyQPPH3L._AC_UL320_.jpg",
       price: 115,
-      rating: 0,
-      reviews: 0,
-      tags: ["For kids", "First published in 2014", "Copyright by Wpbingo"],
-      outOfStock: true,
-      buttonText: "Read More",
+      originalPrice: 125,
+      image:
+        "https://bookio.wpbingosite.com/wp-content/uploads/2018/05/cup-cake-diares-480x693.jpg",
+      rating: 4,
+      reviews: 8,
+      discount: "-8%",
+      features: ["For teens", "Best seller 2023", "Award winning"],
+      stock: "in",
+      action: "ADD TO CART",
+    },
+    {
+      id: 3,
+      title: "Digital Marketing Mastery",
+      author: "Sarah Johnson",
+      price: 145,
+      originalPrice: 160,
+      image:
+        "https://bookio.wpbingosite.com/wp-content/uploads/2018/05/cup-cake-diares-480x693.jpg",
+      rating: 5,
+      reviews: 25,
+      discount: "-9%",
+      features: ["Business", "Updated 2024", "Practical guide"],
+      stock: "in",
+      action: "ADD TO CART",
+    },
+    {
+      id: 4,
+      title: "The Art of Programming",
+      author: "Michael Chen",
+      price: 120,
+      originalPrice: 140,
+      image:
+        "https://bookio.wpbingosite.com/wp-content/uploads/2018/05/cup-cake-diares-6-480x693.jpg",
+      rating: 4,
+      reviews: 18,
+      discount: "-14%",
+      features: ["Technology", "For beginners", "Code examples included"],
+      stock: "in",
+      action: "ADD TO CART",
+    },
+    {
+      id: 5,
+      title: "Mindful Living Guide",
+      author: "Emma Rodriguez",
+      price: 85,
+      originalPrice: 95,
+      image:
+        "https://bookio.wpbingosite.com/wp-content/uploads/2018/05/cup-cake-diares-22-480x693.jpg",
+      rating: 5,
+      reviews: 33,
+      discount: "-11%",
+      features: ["Self-help", "Meditation guide", "Life changing"],
+      stock: "in",
+      action: "ADD TO CART",
+    },
+    {
+      id: 6,
+      title: "Adventures in Space",
+      author: "Dr. Robert Kim",
+      price: 95,
+      originalPrice: 110,
+      image:
+        "https://bookio.wpbingosite.com/wp-content/uploads/2018/05/cup-cake-diares-3-480x693.jpg",
+      rating: 4,
+      reviews: 14,
+      discount: "-14%",
+      features: ["Science fiction", "Educational", "Illustrated"],
+      stock: "in",
+      action: "ADD TO CART",
+    },
+    {
+      id: 7,
+      title: "Cooking Masterclass",
+      author: "Chef Maria Lopez",
+      price: 75,
+      originalPrice: 85,
+      image:
+        "https://bookio.wpbingosite.com/wp-content/uploads/2018/05/cup-cake-diares-15-480x693.jpg",
+      rating: 5,
+      reviews: 28,
+      discount: "-12%",
+      features: ["Cooking", "Step by step", "Professional tips"],
+      stock: "in",
+      action: "ADD TO CART",
+    },
+    {
+      id: 8,
+      title: "Photography Basics",
+      author: "James Wilson",
+      price: 105,
+      originalPrice: 120,
+      image:
+        "https://bookio.wpbingosite.com/wp-content/uploads/2018/05/cup-cake-diares-12-480x693.jpg",
+      rating: 4,
+      reviews: 16,
+      discount: "-13%",
+      features: ["Photography", "Beginner friendly", "Technique focused"],
+      stock: "in",
+      action: "ADD TO CART",
     },
   ];
 
   return (
-    <section className="container mx-auto py-10">
-      <div className="flex items-center justify-between mb-10">
-        <h2 className="text-3xl font-bold text-green-900">
-          Books of the Month
-        </h2>
-        <a
-          href="#"
-          className="text-sm text-green-800 hover:underline flex items-center gap-1"
+    <section className="container mx-auto py-9 px-4">
+      {/* Section Header */}
+      <div className="flex justify-between items-center py-5">
+        <h1 className="font-primary text-secondary font-bold text-2xl">
+          Books of The Month
+        </h1>
+        <Link
+          to="/books"
+          className="text-secondary text-md font-bold font-primary flex items-center gap-1 hover:underline transition-all duration-200 hover:gap-2"
         >
-          View all <span>→</span>
-        </a>
+          View All
+          <Icon
+            icon="lets-icons:arrow-right-light"
+            className="text-secondary text-lg"
+          />
+        </Link>
       </div>
 
-      <div className="flex flex-col md:flex-row items-stretch justify-center gap-15">
-        {books.map((book) => (
-          <div
-            key={book.id}
-            className="flex bg-white border rounded-xl overflow-hidden shadow hover:shadow-lg transition w-fit max-w-full"
-          >
-            {/* Image on the left */}
-            <div className="relative flex-shrink-0 w-[130px] md:w-[150px]">
-              <img
-                src={book.image}
-                alt={book.title}
-                className="h-full w-full object-cover"
-              />
-              {book.discount && (
-                <span className="absolute top-3 left-3 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded">
-                  -{book.discount}%
-                </span>
-              )}
-              {book.outOfStock && (
-                <div className="absolute inset-0 flex items-center justify-center bg-white/80 text-gray-700 font-bold text-lg">
-                  Out of Stock
-                </div>
-              )}
-            </div>
-
-            {/* Text content on the right */}
-            <div className="p-4 flex flex-col justify-between">
-              <div>
-                <div className="flex items-center gap-1 mb-2 text-yellow-500 text-sm">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <Iconify
-                      key={i}
-                      icon="material-symbols:star"
-                      className={
-                        book.rating >= i ? "text-amber-300" : "text-gray-300"
-                      }
-                    />
-                  ))}
-                  <span className="text-gray-600 text-xs">
-                    ({book.reviews})
-                  </span>
-                </div>
-
-                <h3 className="text-xl font-semibold text-gray-800">
-                  {book.title}
-                </h3>
-                <p className="text-sm text-gray-500 mb-2">By: {book.author}</p>
-
-                <div className="flex items-baseline gap-2 mb-3">
-                  {book.originalPrice && (
-                    <span className="line-through text-sm text-gray-400">
-                      ${book.originalPrice}
-                    </span>
-                  )}
-                  <span className="text-lg text-red-600 font-semibold">
-                    ${book.price}
-                  </span>
-                </div>
-
-                <ul className="text-xs text-gray-500 space-y-0.5 mb-4">
-                  {book.tags.map((tag, index) => (
-                    <li key={index} className="list-disc list-inside">
-                      {tag}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <button className="mt-auto w-full py-2 border border-green-900 text-green-900 font-medium text-sm rounded hover:bg-green-900 hover:text-white transition">
-                {book.buttonText}
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+      {/* Featured Book Display */}
+      {/* Swiper */}
+      <Swiper
+        loop={true}
+        spaceBetween={10}
+        slidesPerView={1}
+        className="mySwiper"
+        breakpoints={{
+          640: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
+        }}
+      >
+        {books &&
+          books.map((books, index) => (
+            <SwiperSlide key={index}>
+              <FeaturedBook {...books} />
+            </SwiperSlide>
+          ))}
+      </Swiper>
     </section>
   );
-};
-
-export default BooksOfTheMonth;
+}

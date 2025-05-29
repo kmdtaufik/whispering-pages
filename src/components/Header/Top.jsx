@@ -1,21 +1,55 @@
 import React from "react";
-import Typography from "../Typography/Typography";
 import Iconify from "../Iconify/Iconify";
+import { Link } from "react-router";
 
 const Top = () => {
   return (
-    <div className="py-4 bg-tertiary hidden md:block">
-      <div className="container mx-auto flex gap-4 justify-end">
-        <div className="flex items-center gap-2">
-          <Iconify icon={"material-symbols:person-outline"}></Iconify>
-          <Typography variant="small">Account</Typography>
+    <div className="py-4 hidden md:block font-secondary text-gray-600 uppercase text-xs">
+      <div className="container mx-auto flex gap-4 justify-between items-center">
+        <div className="flex justify-between items-center gap-2">
+          <div>
+            <a
+              href="#"
+              className=" hover:text-secondary font-bold border-r pr-2 border-r-gray-400"
+            >
+              {" "}
+              Membership
+            </a>
+          </div>
+
+          <div>
+            <a
+              href="#"
+              className=" hover:text-secondary font-bold border-r pr-2 border-r-gray-400"
+            >
+              {" "}
+              Coupon & deals
+            </a>
+          </div>
+
+          <div>
+            <a href="#" className=" hover:text-secondary font-bold ">
+              {" "}
+              bestsellers
+            </a>
+          </div>
         </div>
-        <div className="">
-          <div className="h-full w-[2px] bg-secondary"></div>
-        </div>
-        <div className="flex items-center gap-2">
-          <Iconify icon={"mdi:heart-outline"}></Iconify>
-          <Typography variant="small">Wishlist</Typography>
+        <div className="flex justify-between items-center gap-2">
+          {" "}
+          <Link
+            to={"#"}
+            className="flex items-center gap-1 font-bold font-secondary"
+          >
+            <Iconify icon={"material-symbols:person-outline"}></Iconify>
+            <span>Account</span>
+          </Link>
+          <Link
+            to={"#"}
+            className="flex items-center gap-1 font-bold font-secondary"
+          >
+            <Iconify icon={"mdi:heart-outline"}></Iconify>
+            <span>Wishlist</span>
+          </Link>
         </div>
       </div>
     </div>

@@ -33,7 +33,7 @@ const BookCard = ({
 
   return (
     <div
-      className={`border border-gray-200 relative bg-white rounded-lg shadow-md overflow-hidden w-full max-w-xs ${className}`}
+      className={`border group border-gray-200 relative bg-white rounded-lg shadow-md overflow-hidden w-full max-w-xs ${className}`}
     >
       {/* Discount/Hot Badge */}
       {(discount != null || isHot) && (
@@ -50,12 +50,11 @@ const BookCard = ({
           )}
         </div>
       )}
-
-      {/* Wishlist Icon */}
-      <button className="absolute top-2 right-2 bg-white p-1 rounded-full shadow hover:bg-gray-200 z-10">
+      {/* Wish  list Button */}
+      <button className="absolute top-2 right-2 p-1 rounded-full shadow bg-white hover:bg-secondary transition z-10">
         <Iconify
-          icon="fa:heart"
-          className="text-gray-400 hover:text-secondary"
+          icon="mdi-light:heart"
+          className="text-black transition-colors duration-300 hover:text-white"
         />
       </button>
 
@@ -64,27 +63,36 @@ const BookCard = ({
         <img
           src={isHovered && hoverImage ? hoverImage : image}
           alt={title}
-          className="w-full h-62 object-cover transition-transform duration-300"
+          className={`w-full h-62 object-cover transition-transform duration-450 ${isOutOfStock}? opacity-60: `}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         />
         {isOutOfStock && (
-          <div className="absolute inset-0 flex items-center justify-center text-red-800 font-semibold text-lg bg-white bg-opacity-75">
-            Out Of Stock
+          <div className="absolute inset-0 flex items-center justify-center  font-semibold text-lg opacity-99 ">
+            <span className="bg-gray-400 text-white font-secondary">
+              Out of Stock
+            </span>
           </div>
         )}
 
         {/* Hover Options */}
-        {isHovered && !isOutOfStock && (
-          <div className="absolute bottom-0 left-0 right-0  bg-transparent flex justify-around items-center py-2 transition-opacity duration-300">
-            <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-              <Iconify icon={"solar:cart-line-duotone"}></Iconify>
+
+        <div className="absolute bottom-0 left-0 right-0 origin-bottom transform scale-y-0 translate-y-4 group-hover:scale-y-100 group-hover:translate-y-0 transition-all duration-500 ease-out flex">
+          {!isOutOfStock && (
+            <button className="flex-1 h-12 bg-black text-white flex justify-center items-center hover:bg-secondary transition-all duration-300">
+              <Iconify icon="solar:cart-line-duotone" />
             </button>
-            <button className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">
-              <Iconify icon={"mdi-light:eye"}></Iconify>
+          )}
+          {isOutOfStock && (
+            <button className="flex-1 h-12 bg-black text-white flex justify-center items-center hover:bg-secondary transition-all duration-300">
+              <Iconify icon="solar:arrow-right-outline" />
             </button>
-          </div>
-        )}
+          )}
+
+          <button className="flex-1 h-12 bg-black text-white flex justify-center items-center hover:bg-secondary transition-all duration-300">
+            <Iconify icon="mdi-light:eye" />
+          </button>
+        </div>
       </div>
 
       {/* Details */}
@@ -95,18 +103,24 @@ const BookCard = ({
           <span className="text-gray-500 ml-1 text-xs">({reviews})</span>
         </div>
 
-        <p className="text-gray-500 text-sm mb-1">By : {author}</p>
-        <h3 className="font-semibold text-md">{title}</h3>
+        <p className="text-gray-500 text-sm mb-1 font-secondary">
+          By : {author}
+        </p>
+        <h3 className="font-semibold text-md font-primary text-secondary">
+          {title}
+        </h3>
         {subtitle && (
-          <p className="text-gray-400 text-sm mb-1 italic">{subtitle}</p>
+          <p className="text-gray-400 text-sm mb-1 italic font-secondary ">
+            {subtitle}
+          </p>
         )}
         <div className="space-x-2 mt-2">
           {originalPrice && (
-            <span className="line-through text-gray-400 text-sm">
+            <span className="line-through text-gray-400 text-sm font-primary">
               ${originalPrice}
             </span>
           )}
-          <span className="text-red-600 font-bold">${price}</span>
+          <span className="text-primary font-bold font-primary">${price}</span>
         </div>
       </div>
     </div>

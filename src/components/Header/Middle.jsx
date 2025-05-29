@@ -7,9 +7,9 @@ import Input from "../Input/Input";
 const Middle = () => {
   return (
     <div className="border-b border-t border-b-indigo-50 border-t-indigo-50 hidden md:block">
-      <div className="flex items-center justify-between container mx-auto py-3">
+      <div className="flex items-center justify-between container mx-auto">
         {/* Logo */}
-        <img src="/Logo.png" width="108" height="37" />
+        <img src="/Logo.png" width="100" height="25" />
 
         {/* Search Bar */}
         <div className="flex items-center bg-tertiary w-[60%] rounded-md">
@@ -34,7 +34,17 @@ const Middle = () => {
         </div>
 
         {/* Cart */}
-        <div>
+        <div className="flex items-center gap-4">
+          {" "}
+          <div className="flex flex-col items-center justify-center ">
+            <Iconify
+              icon={"mingcute:location-line"}
+              className="text-lg"
+            ></Iconify>
+            <span className="text-secondary font-secondary font-bold font-xs">
+              BookShop Finder
+            </span>
+          </div>
           <div className="relative">
             <div className="bg-primary absolute right-0 text-white rounded-full w-6 h-6 text-sm flex items-center justify-center">
               1

@@ -132,17 +132,17 @@ const books = [
 
 export default function TrendingBooks() {
   return (
-    <section className="container mx-auto border-t border-t-gray-200 ">
+    <section className="container mx-auto py-10">
       <div>
-        <Typography variant="h1" className="text-secondary py-5">
+        <h1 className="text-secondary text-2xl py-5 font-primary font-bold">
           {" "}
           Trending Books!
-        </Typography>
+        </h1>
       </div>
       <Swiper
         navigation={true}
         spaceBetween={20}
-        modules={[Navigation]}
+        // modules={[Navigation]}
         loop={true}
         className="mySwiper "
         slidesPerView={2}
