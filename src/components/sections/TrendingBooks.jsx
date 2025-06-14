@@ -1,9 +1,6 @@
 import React from "react";
 import BookCard from "../Books/BookCard";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
+import CustomCarousel from "../common/CustomCarousel";
 import Typography from "../Typography/Typography";
 
 const books = [
@@ -138,35 +135,28 @@ export default function TrendingBooks() {
           Trending Books!
         </h1>
       </div>
-      <Swiper
-        navigation={true}
+      <CustomCarousel
+        slidesToShow={6}
+        slidesToScroll={1}
         spaceBetween={20}
-        modules={[Navigation]}
+        navigation={true}
+        pagination={false}
         loop={true}
-        className="mySwiper"
-        slidesPerView={1.2}
-        centeredSlides={true}
         breakpoints={{
-          480: {
-            slidesPerView: 2,
-            centeredSlides: false,
-          },
-          768: {
-            slidesPerView: 3,
-            centeredSlides: false,
-          },
-          1024: {
-            slidesPerView: 6,
-            centeredSlides: false,
-          },
+          320: { slidesToShow: 1 },
+          480: { slidesToShow: 2 },
+          768: { slidesToShow: 3 },
+          1024: { slidesToShow: 4 },
+          1280: { slidesToShow: 5 },
+          1536: { slidesToShow: 6 },
         }}
+        className="mySwiper trending-books-carousel"
+        navigationClass="carousel-nav-external"
       >
         {books.map((book, index) => (
-          <SwiperSlide key={index}>
-            <BookCard {...book} />
-          </SwiperSlide>
+          <BookCard key={index} {...book} />
         ))}
-      </Swiper>
+      </CustomCarousel>
     </section>
   );
 }

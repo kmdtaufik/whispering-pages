@@ -1,10 +1,6 @@
-import React, { useRef, useEffect, useState } from "react";
+import React from "react";
 import BookCard from "./BookCard";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import Iconify from "../Iconify/Iconify";
+import CustomCarousel from "../common/CustomCarousel";
 
 const books = [
   {
@@ -131,25 +127,6 @@ const books = [
 ];
 
 export default function TopBooks() {
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
-  const [swiperInstance, setSwiperInstance] = useState(null);
-
-  useEffect(() => {
-    if (
-      swiperInstance &&
-      prevRef.current &&
-      nextRef.current &&
-      !swiperInstance.destroyed
-    ) {
-      swiperInstance.params.navigation.prevEl = prevRef.current;
-      swiperInstance.params.navigation.nextEl = nextRef.current;
-      swiperInstance.navigation.destroy();
-      swiperInstance.navigation.init();
-      swiperInstance.navigation.update();
-    }
-  }, [swiperInstance]);
-
   return (
     <section className="container mx-auto">
       <div>
@@ -158,44 +135,21 @@ export default function TopBooks() {
         </span>
       </div>
 
-      <div className="group/one flex items-center">
-        {/* Left Nav Button */}
-        <button ref={prevRef} className="pr-3">
-          <Iconify
-            icon="simple-line-icons:arrow-left"
-            className="group/one-hover:text-gray-500 hover:text-black text-transparent transition duration-300 ease-in-out"
-          />
-        </button>
-
-        <Swiper
-          onSwiper={setSwiperInstance}
-          modules={[Navigation]}
-          loop={true}
+      <div className="px-5">
+        <CustomCarousel
+          slidesToShow={6}
+          slidesToScroll={1}
           spaceBetween={20}
-          slidesPerView={2}
-          centeredSlides={true}
-          className="mySwiper my-5 "
           breakpoints={{
-            1024: {
-              slidesPerView: 6,
-              centeredSlides: false,
-            },
+            0: { slidesToShow: 2 },
+            1024: { slidesToShow: 6 },
           }}
+          className="my-5"
         >
           {books.map((book, index) => (
-            <SwiperSlide key={index}>
-              <BookCard {...book} />
-            </SwiperSlide>
+            <BookCard key={index} {...book} />
           ))}
-        </Swiper>
-
-        {/* Right Nav Button */}
-        <button ref={nextRef} className="pl-3">
-          <Iconify
-            icon="simple-line-icons:arrow-right"
-            className="group/one-hover:text-gray-500 hover:text-black text-transparent transition duration-300 ease-in-out"
-          />
-        </button>
+        </CustomCarousel>
       </div>
     </section>
   );

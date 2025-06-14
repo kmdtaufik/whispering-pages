@@ -17,6 +17,7 @@ const BookCard = ({
   className = "", //Add custom classes
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isCardHovered, setIsCardHovered] = useState(false);
 
   // Memoize the rating stars to avoid recalculating on every render
   const ratingStars = useMemo(
@@ -33,7 +34,9 @@ const BookCard = ({
 
   return (
     <div
-      className={`border group border-gray-200 relative bg-white rounded-lg shadow-md overflow-hidden w-full max-w-xs mx-auto ${className}`}
+      className={`border border-gray-200 relative bg-white rounded-lg shadow-md overflow-hidden w-full max-w-xs mx-auto ${className}`}
+      onMouseEnter={() => setIsCardHovered(true)}
+      onMouseLeave={() => setIsCardHovered(false)}
     >
       {/* Discount/Hot Badge */}
       {(discount != null || isHot) && (
@@ -78,8 +81,13 @@ const BookCard = ({
         )}
 
         {/* Hover Options */}
-
-        <div className="absolute bottom-0 left-0 right-0 origin-bottom transform scale-y-0 translate-y-4 group-hover:scale-y-100 group-hover:translate-y-0 transition-all duration-500 ease-out flex">
+        <div
+          className={`absolute bottom-0 left-0 right-0 origin-bottom transform transition-all duration-500 ease-out flex ${
+            isCardHovered
+              ? "scale-y-100 translate-y-0"
+              : "scale-y-0 translate-y-4"
+          }`}
+        >
           {!isOutOfStock && (
             <button className="flex-1 h-12 bg-black text-white flex justify-center items-center hover:bg-secondary transition-all duration-300">
               <Iconify icon="solar:cart-line-duotone" />
