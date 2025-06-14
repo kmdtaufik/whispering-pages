@@ -33,7 +33,7 @@ const BookCard = ({
 
   return (
     <div
-      className={`border group border-gray-200 relative bg-white rounded-lg shadow-md overflow-hidden w-full max-w-xs ${className}`}
+      className={`border group border-gray-200 relative bg-white rounded-lg shadow-md overflow-hidden w-full max-w-xs mx-auto ${className}`}
     >
       {/* Discount/Hot Badge */}
       {(discount != null || isHot) && (
@@ -63,13 +63,15 @@ const BookCard = ({
         <img
           src={isHovered && hoverImage ? hoverImage : image}
           alt={title}
-          className={`w-full h-62 object-cover transition-transform duration-450 ${isOutOfStock}? opacity-60: `}
+          className={`w-full h-48 md:h-62 object-cover transition-transform duration-450 ${
+            isOutOfStock ? "opacity-60" : ""
+          }`}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         />
         {isOutOfStock && (
-          <div className="absolute inset-0 flex items-center justify-center  font-semibold text-lg opacity-99 ">
-            <span className="bg-gray-400 text-white font-secondary">
+          <div className="absolute inset-0 flex items-center justify-center font-semibold text-lg">
+            <span className="bg-gray-400 text-white font-secondary px-2 py-1 rounded">
               Out of Stock
             </span>
           </div>
@@ -96,31 +98,33 @@ const BookCard = ({
       </div>
 
       {/* Details */}
-      <div className="p-4 text-center">
+      <div className="p-3 md:p-4 text-center">
         {/* Icon-based Rating */}
         <div className="flex justify-center items-center space-x-0.5 mb-1">
           {ratingStars}
           <span className="text-gray-500 ml-1 text-xs">({reviews})</span>
         </div>
 
-        <p className="text-gray-500 text-sm mb-1 font-secondary">
+        <p className="text-gray-500 text-xs md:text-sm mb-1 font-secondary">
           By : {author}
         </p>
-        <h3 className="font-semibold text-md font-primary text-secondary">
+        <h3 className="font-semibold text-sm md:text-md font-primary text-secondary line-clamp-2">
           {title}
         </h3>
         {subtitle && (
-          <p className="text-gray-400 text-sm mb-1 italic font-secondary ">
+          <p className="text-gray-400 text-xs md:text-sm mb-1 italic font-secondary line-clamp-1">
             {subtitle}
           </p>
         )}
         <div className="space-x-2 mt-2">
           {originalPrice && (
-            <span className="line-through text-gray-400 text-sm font-primary">
+            <span className="line-through text-gray-400 text-xs md:text-sm font-primary">
               ${originalPrice}
             </span>
           )}
-          <span className="text-primary font-bold font-primary">${price}</span>
+          <span className="text-primary font-bold font-primary text-sm md:text-base">
+            ${price}
+          </span>
         </div>
       </div>
     </div>

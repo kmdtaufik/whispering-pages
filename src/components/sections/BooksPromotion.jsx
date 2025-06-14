@@ -138,10 +138,10 @@ export default function BooksPromotion() {
   ];
 
   return (
-    <section className="container mx-auto py-10">
-      <div className="container mx-auto ">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold text-secondary font-primary">
+    <section className="container mx-auto py-10 px-4">
+      <div className="container mx-auto">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-2">
+          <h2 className="text-xl md:text-2xl font-bold text-secondary font-primary">
             Travel the World from Home
           </h2>
           <a
@@ -152,20 +152,19 @@ export default function BooksPromotion() {
           </a>
         </div>
 
-        {/* Grid: 6 columns × 2 rows (1 big left + 8 small right) */}
-        <div className="grid lg:grid-cols-6 grid-rows-2 gap-2 grid-cols-2 ">
-          {/* Left featured book spans 2 cols and 2 rows */}
-
-          <BigBookCard {...books[1]} className="col-span-2 row-span-full" />
-          {/* Top 4 books */}
-          <BookCard {...books[2]} />
-          <BookCard {...books[3]} />
-          <BookCard {...books[4]} />
-          <BookCard {...books[5]} />
-          <BookCard {...books[6]} />
-          <BookCard {...books[7]} />
-          <BookCard {...books[8]} />
-          <BookCard {...books[9]} />
+        {/* Grid: Responsive layout */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 grid-rows-2 gap-2">
+          {/* Left featured book spans appropriately on different screens */}
+          <BigBookCard {...books[1]} className="col-span-2 row-span-2" />
+          {/* Other books */}
+          <BookCard {...books[2]} className="hidden md:block" />
+          <BookCard {...books[3]} className="hidden md:block" />
+          <BookCard {...books[4]} className="hidden lg:block" />
+          <BookCard {...books[5]} className="hidden lg:block" />
+          <BookCard {...books[6]} className="hidden lg:block" />
+          <BookCard {...books[7]} className="hidden lg:block" />
+          <BookCard {...books[8]} className="hidden lg:block" />
+          <BookCard {...books[9]} className="hidden lg:block" />
         </div>
       </div>
     </section>

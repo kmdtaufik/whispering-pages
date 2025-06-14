@@ -132,22 +132,29 @@ const books = [
 
 export default function TrendingBooks() {
   return (
-    <section className="container mx-auto py-10">
+    <section className="container mx-auto py-10 px-4">
       <div>
         <h1 className="text-secondary text-2xl py-5 font-primary font-bold">
-          {" "}
           Trending Books!
         </h1>
       </div>
       <Swiper
         navigation={true}
         spaceBetween={20}
-        // modules={[Navigation]}
+        modules={[Navigation]}
         loop={true}
-        className="mySwiper "
-        slidesPerView={2}
+        className="mySwiper"
+        slidesPerView={1.2}
         centeredSlides={true}
         breakpoints={{
+          480: {
+            slidesPerView: 2,
+            centeredSlides: false,
+          },
+          768: {
+            slidesPerView: 3,
+            centeredSlides: false,
+          },
           1024: {
             slidesPerView: 6,
             centeredSlides: false,

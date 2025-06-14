@@ -55,12 +55,12 @@ const TopCategories = () => {
   }, []);
 
   return (
-    <section className="relative py-10 bg-[url(https://bookio.wpbingosite.com/wp-content/uploads/2021/07/img1-11.jpg)]">
-      <h2 className="text-center text-2xl font-bold font-primary text-secondary mb-8">
+    <section className="relative py-10 bg-[url(https://bookio.wpbingosite.com/wp-content/uploads/2021/07/img1-11.jpg)] bg-cover bg-center">
+      <h2 className="text-center text-xl md:text-2xl font-bold font-primary text-secondary mb-8 px-4">
         Top Categories
       </h2>
 
-      <div className="group relative px-5 max-w-7xl mx-auto">
+      <div className="group relative px-4 md:px-5 max-w-7xl mx-auto">
         <Swiper
           modules={[Navigation]}
           loop={true}
@@ -70,23 +70,24 @@ const TopCategories = () => {
             swiperRef.current = swiper;
           }}
           breakpoints={{
-            640: { slidesPerView: 2.5 },
-            768: { slidesPerView: 3.5 },
-            1024: { slidesPerView: 5 },
+            480: { slidesPerView: 2.5, spaceBetween: 15 },
+            640: { slidesPerView: 3.5, spaceBetween: 20 },
+            768: { slidesPerView: 4.5, spaceBetween: 20 },
+            1024: { slidesPerView: 5, spaceBetween: 25 },
           }}
         >
           {categories.map((cat, index) => (
             <SwiperSlide key={index}>
               <div className="flex flex-col items-center text-center">
-                <div className="w-50 h-50 md:w-36 md:h-36 rounded-full bg-white shadow-lg flex items-end justify-center overflow-hidden transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-xl hover:shadow-gray-400/50 cursor-pointer">
+                <div className="w-24 h-24 md:w-32 md:h-32 lg:w-36 lg:h-36 rounded-full bg-white shadow-lg flex items-end justify-center overflow-hidden transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-xl hover:shadow-gray-400/50 cursor-pointer">
                   <img
                     src={cat.image}
                     alt={cat.label}
-                    className="h-[80%] w-auto object-contain transition-transform duration-300 wiggle hover:scale-105"
+                    className="h-[80%] w-auto object-contain transition-transform duration-300 hover:scale-105"
                     loading="lazy"
                   />
                 </div>
-                <span className="mt-3 font-secondary font-bold text-sm text-green-900 transition-colors duration-200 hover:text-secondary">
+                <span className="mt-3 font-secondary font-bold text-xs md:text-sm text-green-900 transition-colors duration-200 hover:text-secondary px-2 text-center">
                   {cat.label}
                 </span>
               </div>

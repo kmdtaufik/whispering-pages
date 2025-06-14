@@ -63,13 +63,15 @@ const BookCard = ({
         <img
           src={isHovered && hoverImage ? hoverImage : image}
           alt={title}
-          className={`md:w-3xl md:h-[448px] h-auto w-auto object-cover transition-transform duration-450 ${isOutOfStock}? opacity-60: `}
+          className={`w-full h-48 md:h-80 lg:h-[448px] object-cover transition-transform duration-450 ${
+            isOutOfStock ? "opacity-60" : ""
+          }`}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         />
         {isOutOfStock && (
-          <div className="absolute inset-0 flex items-center justify-center  font-semibold text-lg opacity-99 ">
-            <span className="bg-gray-400 text-white font-secondary">
+          <div className="absolute inset-0 flex items-center justify-center font-semibold text-lg">
+            <span className="bg-gray-400 text-white font-secondary px-2 py-1 rounded">
               Out of Stock
             </span>
           </div>
@@ -96,7 +98,7 @@ const BookCard = ({
       </div>
 
       {/* Details */}
-      <div className="p-4 text-center">
+      <div className="p-3 md:p-4 text-center">
         {/* Icon-based Rating */}
         <div className="flex justify-center items-center space-x-0.5 mb-1">
           {ratingStars}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Facility from "../../components/Facility/Facility";
@@ -16,7 +16,13 @@ import SlideShow from "../../components/sections/SlideShow";
 
 const Home = () => {
   return (
-    <>
+    <Suspense
+      fallback={
+        <div className="flex justify-center items-center min-h-screen">
+          Loading...
+        </div>
+      }
+    >
       <Header></Header>
       <SlideShow></SlideShow>
       <PromoSection></PromoSection>
@@ -31,7 +37,7 @@ const Home = () => {
       <Review></Review>
       <Facility></Facility>
       <Footer></Footer>
-    </>
+    </Suspense>
   );
 };
 
