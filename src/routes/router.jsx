@@ -13,7 +13,8 @@ import React from "react";
 // import Faq from "../pages/Faq/Faq";
 // import NotFound from "../pages/NotFound/NotFound";
 // import TestComponents from "../pages/TestComponents/TestComponents";
-
+import Cart from "../components/Cart/Cart";
+import Checkout from "../pages/Checkout/Checkout";
 //Lazy loading components
 const Home = React.lazy(() => import("../pages/Home/Home"));
 const About = React.lazy(() => import("../pages/About/About"));
@@ -61,7 +62,7 @@ const router = createBrowserRouter([
     element: <Store></Store>,
   },
   {
-    path: "/product-details",
+    path: "/product/",
     element: <ProductDetails></ProductDetails>,
   },
   {
@@ -95,6 +96,14 @@ const router = createBrowserRouter([
   {
     path: "/*",
     element: <NotFound></NotFound>,
+  },
+  {
+    path: "/cart",
+    element: <Cart></Cart>,
+  },
+  {
+    path: "/checkout",
+    element: <Checkout></Checkout>,
   },
 ]);
 
