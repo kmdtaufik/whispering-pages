@@ -2,16 +2,16 @@ import React, { memo, useMemo, useState } from "react";
 import Iconify from "../Iconify/Iconify";
 
 const BookCard = ({
-  title,
-  subtitle,
-  author,
-  price,
+  productName,
+  productDescription,
+  brand,
+  productPrice,
   originalPrice,
-  image,
-  hoverImage,
+  productThumbnail,
+  productImages = "",
   discount,
-  rating,
-  reviews,
+  rating = 4,
+  reviews = 5,
   isHot,
   isOutOfStock,
   className = "", //Add custom classes
@@ -62,10 +62,16 @@ const BookCard = ({
       </button>
 
       {/* Book Image */}
+
+      {/* Product images are not arrays rather strings separated by commas. */}
       <div className="relative">
         <img
-          src={isHovered && hoverImage ? hoverImage : image}
-          alt={title}
+          src={
+            isHovered && productImages
+              ? productImages.split(",")[0]
+              : productThumbnail
+          }
+          alt={productName}
           className={`w-full h-48 md:h-62 object-cover transition-transform duration-450 ${
             isOutOfStock ? "opacity-60" : ""
           }`}
@@ -113,15 +119,15 @@ const BookCard = ({
           <span className="text-gray-500 ml-1 text-xs">({reviews})</span>
         </div>
 
-        <p className="text-gray-500 text-xs md:text-sm mb-1 font-secondary">
-          By : {author}
+        <p className="text-gray-500 text-xs md:text-sm mb-1 font-secondary text-nowrap">
+          By : {brand}
         </p>
         <h3 className="font-semibold text-sm md:text-md font-primary text-secondary line-clamp-2">
-          {title}
+          {productName}
         </h3>
-        {subtitle && (
+        {productDescription && (
           <p className="text-gray-400 text-xs md:text-sm mb-1 italic font-secondary line-clamp-1">
-            {subtitle}
+            {productDescription}
           </p>
         )}
         <div className="space-x-2 mt-2">
@@ -131,7 +137,7 @@ const BookCard = ({
             </span>
           )}
           <span className="text-primary font-bold font-primary text-sm md:text-base">
-            ${price}
+            ${productPrice}
           </span>
         </div>
       </div>
