@@ -11,7 +11,7 @@ export default function Middle() {
   ];
   return (
     <section className="border-t border-t-gray-200  mx-auto px-4 font-secondary">
-      <div className="flex flex-col md:flex-row justify-between items-center py-2 gap-2 container">
+      <div className="flex flex-col md:flex-row justify-between items-center py-2 gap-2 container mx-auto">
         <div className="flex items-center gap-2 md:gap-3 bg-white">
           {socialLinks &&
             socialLinks.map((link, index) => (
