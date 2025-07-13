@@ -1,17 +1,17 @@
 import React, { memo, useMemo, useState } from "react";
 import Iconify from "../Iconify/Iconify";
 
-const BookCard = ({
-  title,
-  subtitle,
-  author,
-  price,
+const BigBookCard = ({
+  productName,
+  productDescription,
+  brand,
+  productPrice,
   originalPrice,
-  image,
-  hoverImage,
+  productThumbnail,
+  productImages = "",
   discount,
-  rating,
-  reviews,
+  rating = 4,
+  reviews = 5,
   isHot,
   isOutOfStock,
   className = "", //Add custom classes
@@ -33,7 +33,7 @@ const BookCard = ({
 
   return (
     <div
-      className={` group  relative bg-white   overflow-hidden w-full max-w-xs ${className}`}
+      className={`group relative bg-white overflow-hidden w-full max-w-xs ${className}`}
     >
       {/* Discount/Hot Badge */}
       {(discount != null || isHot) && (
@@ -50,7 +50,7 @@ const BookCard = ({
           )}
         </div>
       )}
-      {/* Wish  list Button */}
+      {/* Wish list Button */}
       <button className="absolute top-2 right-2 p-1 rounded-full shadow bg-white hover:bg-secondary transition z-10">
         <Iconify
           icon="mdi-light:heart"
@@ -61,8 +61,12 @@ const BookCard = ({
       {/* Book Image */}
       <div className="relative">
         <img
-          src={isHovered && hoverImage ? hoverImage : image}
-          alt={title}
+          src={
+            isHovered && productImages
+              ? productImages.split(",")[0]
+              : productThumbnail
+          }
+          alt={productName}
           className={`w-full h-48 md:h-80 lg:h-[448px] object-cover transition-transform duration-450 ${
             isOutOfStock ? "opacity-60" : ""
           }`}
@@ -78,7 +82,6 @@ const BookCard = ({
         )}
 
         {/* Hover Options */}
-
         <div className="absolute bottom-0 left-0 right-0 origin-bottom transform scale-y-0 translate-y-4 group-hover:scale-y-100 group-hover:translate-y-0 transition-all duration-500 ease-out flex">
           {!isOutOfStock && (
             <button className="flex-1 h-12 bg-black text-white flex justify-center items-center hover:bg-secondary transition-all duration-300">
@@ -106,14 +109,14 @@ const BookCard = ({
         </div>
 
         <p className="text-gray-500 text-sm mb-1 font-secondary">
-          By : {author}
+          By : {brand}
         </p>
-        <h3 className="font-semibold text-md font-primary text-secondary">
-          {title}
+        <h3 className="font-semibold text-md font-primary text-secondary line-clamp-2">
+          {productName}
         </h3>
-        {subtitle && (
-          <p className="text-gray-400 text-sm mb-1 italic font-secondary ">
-            {subtitle}
+        {productDescription && (
+          <p className="text-gray-400 text-sm mb-1 italic font-secondary line-clamp-1">
+            {productDescription}
           </p>
         )}
         <div className="space-x-2 mt-2">
@@ -122,11 +125,13 @@ const BookCard = ({
               ${originalPrice}
             </span>
           )}
-          <span className="text-primary font-bold font-primary">${price}</span>
+          <span className="text-primary font-bold font-primary">
+            ${productPrice}
+          </span>
         </div>
       </div>
     </div>
   );
 };
 
-export default memo(BookCard);
+export default memo(BigBookCard);
