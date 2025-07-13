@@ -16,7 +16,9 @@ export default function TopBooks() {
         }
         const data = await response.json();
         setBooks(data.products);
-        console.log("Top books fetched successfully:", data.products);
+        if (process.env.NODE_ENV !== "production") {
+          console.log("Top books fetched successfully:", data.products);
+        }
       } catch (error) {
         console.error("Error fetching top books:", error);
       }
