@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router";
-import React from "react";
+import React, { Suspense } from "react";
 // import Home from "../pages/Home/Home";
 // import About from "../pages/About/About";
 // import Contact from "../pages/Contact/Contact";
@@ -40,70 +40,138 @@ const TestComponents = React.lazy(() =>
   import("../pages/TestComponents/TestComponents")
 );
 
+// Loading component
+const LoadingSpinner = () => (
+  <div className="flex justify-center items-center min-h-screen">
+    <div className="text-lg">Loading...</div>
+  </div>
+);
+
+// Wrapper component for Suspense
+const SuspenseWrapper = ({ children }) => (
+  <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>
+);
+
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home></Home>,
+    element: (
+      <SuspenseWrapper>
+        <Home />
+      </SuspenseWrapper>
+    ),
   },
   {
     path: "/home",
-    element: <Home></Home>,
+    element: (
+      <SuspenseWrapper>
+        <Home />
+      </SuspenseWrapper>
+    ),
   },
   {
     path: "/about",
-    element: <About></About>,
+    element: (
+      <SuspenseWrapper>
+        <About />
+      </SuspenseWrapper>
+    ),
   },
   {
     path: "/contact",
-    element: <Contact></Contact>,
+    element: (
+      <SuspenseWrapper>
+        <Contact />
+      </SuspenseWrapper>
+    ),
   },
   {
     path: "/store",
-    element: <Store></Store>,
+    element: (
+      <SuspenseWrapper>
+        <Store />
+      </SuspenseWrapper>
+    ),
   },
   {
     path: "/product/",
-    element: <ProductDetails></ProductDetails>,
+    element: (
+      <SuspenseWrapper>
+        <ProductDetails />
+      </SuspenseWrapper>
+    ),
   },
   {
     path: "/login",
-    element: <Login></Login>,
+    element: (
+      <SuspenseWrapper>
+        <Login />
+      </SuspenseWrapper>
+    ),
   },
   {
     path: "/registration",
-    element: <Registration></Registration>,
+    element: (
+      <SuspenseWrapper>
+        <Registration />
+      </SuspenseWrapper>
+    ),
   },
   {
     path: "/blog",
-    element: <Blog></Blog>,
+    element: (
+      <SuspenseWrapper>
+        <Blog />
+      </SuspenseWrapper>
+    ),
   },
   {
     path: "/blog-details",
-    element: <BlogDetails></BlogDetails>,
+    element: (
+      <SuspenseWrapper>
+        <BlogDetails />
+      </SuspenseWrapper>
+    ),
   },
   {
     path: "/product-author",
-    element: <ProductAuthor></ProductAuthor>,
+    element: (
+      <SuspenseWrapper>
+        <ProductAuthor />
+      </SuspenseWrapper>
+    ),
   },
   {
     path: "/faq",
-    element: <Faq></Faq>,
+    element: (
+      <SuspenseWrapper>
+        <Faq />
+      </SuspenseWrapper>
+    ),
   },
   {
     path: "/test/components",
-    element: <TestComponents></TestComponents>,
+    element: (
+      <SuspenseWrapper>
+        <TestComponents />
+      </SuspenseWrapper>
+    ),
   },
   {
     path: "/*",
-    element: <NotFound></NotFound>,
+    element: (
+      <SuspenseWrapper>
+        <NotFound />
+      </SuspenseWrapper>
+    ),
   },
   {
     path: "/cart",
-    element: <Cart></Cart>,
+    element: <Cart />,
   },
   {
     path: "/checkout",
-    element: <Checkout></Checkout>,
+    element: <Checkout />,
   },
 ]);
 

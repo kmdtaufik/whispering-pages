@@ -1,7 +1,10 @@
 import React, { memo, useMemo, useState } from "react";
 import Iconify from "../Iconify/Iconify";
+import { useCart } from "../../context/CartContext";
 
 const BigBookCard = ({
+  _id,
+  slug,
   productName,
   productDescription,
   brand,
@@ -17,6 +20,7 @@ const BigBookCard = ({
   className = "", //Add custom classes
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const { addToCart } = useCart();
 
   // Memoize the rating stars to avoid recalculating on every render
   const ratingStars = useMemo(
@@ -30,6 +34,22 @@ const BigBookCard = ({
       )),
     [rating]
   );
+
+  const handleAddToCart = () => {
+    const cartItem = {
+      id: _id,
+      _id,
+      slug,
+      productName,
+      productDescription,
+      brand,
+      productPrice,
+      productThumbnail,
+      originalPrice,
+      discount,
+    };
+    addToCart(cartItem);
+  };
 
   return (
     <div
@@ -84,7 +104,10 @@ const BigBookCard = ({
         {/* Hover Options */}
         <div className="absolute bottom-0 left-0 right-0 origin-bottom transform scale-y-0 translate-y-4 group-hover:scale-y-100 group-hover:translate-y-0 transition-all duration-500 ease-out flex">
           {!isOutOfStock && (
-            <button className="flex-1 h-12 bg-black text-white flex justify-center items-center hover:bg-secondary transition-all duration-300">
+            <button
+              className="flex-1 h-12 bg-black text-white flex justify-center items-center hover:bg-secondary transition-all duration-300"
+              onClick={handleAddToCart}
+            >
               <Iconify icon="solar:cart-line-duotone" />
             </button>
           )}

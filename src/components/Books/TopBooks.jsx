@@ -46,7 +46,7 @@ export default function TopBooks() {
           className="my-5"
         >
           {books.map((book) => (
-            <BookCard key={book.__id} {...book} />
+            <BookCard key={book._id} {...book} />
           ))}
         </CustomCarousel>
       </div>

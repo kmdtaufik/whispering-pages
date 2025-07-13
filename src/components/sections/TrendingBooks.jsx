@@ -141,6 +141,7 @@ export default function TrendingBooks() {
         }
         const data = await response.json();
         setBooks(data.products);
+        // eslint-disable-next-line no-undef
         if (process.env.NODE_ENV !== "production") {
           console.log("Trending books fetched successfully:", data.products);
         }
@@ -177,7 +178,7 @@ export default function TrendingBooks() {
         navigationClass="carousel-nav-external"
       >
         {books.map((book) => (
-          <BookCard key={books._id} {...book} />
+          <BookCard key={book._id} {...book} />
         ))}
       </CustomCarousel>
     </section>

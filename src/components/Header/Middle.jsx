@@ -3,8 +3,13 @@ import Button from "../Button/Button";
 import Typography from "../Typography/Typography";
 import Iconify from "../Iconify/Iconify";
 import Input from "../Input/Input";
+import { useCart } from "../../context/CartContext";
+import { Link } from "react-router";
 
 const Middle = () => {
+  const { getCartCount } = useCart();
+  const cartCount = getCartCount();
+
   return (
     <div className="border-b border-t border-b-indigo-50 border-t-indigo-50 hidden md:block">
       <div className="flex items-center justify-between container mx-auto">
@@ -35,7 +40,6 @@ const Middle = () => {
 
         {/* Cart */}
         <div className="flex items-center gap-4">
-          {" "}
           <div className="flex flex-col items-center justify-center ">
             <Iconify
               icon={"mingcute:location-line"}
@@ -45,12 +49,14 @@ const Middle = () => {
               BookShop Finder
             </span>
           </div>
-          <div className="relative">
-            <div className="bg-primary absolute right-0 text-white rounded-full w-6 h-6 text-sm flex items-center justify-center">
-              1
-            </div>
+          <Link to="/cart" className="relative">
+            {cartCount > 0 && (
+              <div className="bg-primary absolute -top-1 -right-1 text-white rounded-full w-6 h-6 text-sm flex items-center justify-center">
+                {cartCount}
+              </div>
+            )}
             <Iconify className="h-12 w-12" icon={"solar:cart-linear"}></Iconify>
-          </div>
+          </Link>
         </div>
       </div>
     </div>

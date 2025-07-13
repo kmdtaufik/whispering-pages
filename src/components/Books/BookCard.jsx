@@ -1,7 +1,10 @@
 import React, { memo, useMemo, useState } from "react";
 import Iconify from "../Iconify/Iconify";
+import { useCart } from "../../context/CartContext";
 
 const BookCard = ({
+  _id,
+  slug,
   productName,
   productDescription,
   brand,
@@ -18,6 +21,7 @@ const BookCard = ({
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isCardHovered, setIsCardHovered] = useState(false);
+  const { addToCart } = useCart();
 
   // Memoize the rating stars to avoid recalculating on every render
   const ratingStars = useMemo(
@@ -31,6 +35,22 @@ const BookCard = ({
       )),
     [rating]
   );
+
+  const handleAddToCart = () => {
+    const cartItem = {
+      id: _id,
+      _id,
+      slug,
+      productName,
+      productDescription,
+      brand,
+      productPrice,
+      productThumbnail,
+      originalPrice,
+      discount,
+    };
+    addToCart(cartItem);
+  };
 
   return (
     <div
@@ -95,7 +115,10 @@ const BookCard = ({
           }`}
         >
           {!isOutOfStock && (
-            <button className="flex-1 h-12 bg-black text-white flex justify-center items-center hover:bg-secondary transition-all duration-300">
+            <button
+              className="flex-1 h-12 bg-black text-white flex justify-center items-center hover:bg-secondary transition-all duration-300"
+              onClick={handleAddToCart}
+            >
               <Iconify icon="solar:cart-line-duotone" />
             </button>
           )}
